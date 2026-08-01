@@ -1,33 +1,38 @@
-# Catatan Perubahan (Changelog)
+# Changelog - Smart Calculator & Unit Converter
 
-Semua perubahan penting pada proyek Kalkulator Pintar dan Konverter ini akan didokumentasikan dalam file ini.
+All notable changes to this project are documented in this file.
 
-Format ini didasarkan pada [Keep a Changelog](https://keepachangelog.com/id/1.0.0/),
-dan proyek ini mematuhi [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
+and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [Unreleased]
+---
 
-### Ditambahkan (Added)
-- Inisialisasi awal repositori proyek Kalkulator Pintar dan Konverter.
-- Konfigurasi Next.js 14, React 18, Tailwind CSS, Lucide Icons, Vitest, dan Playwright.
-- Dokumentasi teknis lengkap: PRD, Arsitektur, Privasi, Keputusan Arsitektur (ADR), Plan, dan Todo tasks.
+## [1.0.1] - 2026-08-01 (Patch & Enhancement Release)
 
-### Diubah (Changed)
-- N/A
+### 🌟 Added
+- **Progressive Web App (PWA) Offline Support:** Added web app manifest, offline standalone mode, and an automatic non-intrusive install prompt for mobile devices (iOS Safari & Android Chrome).
+- **Multi-Language Support (i18n):** Client-side automatic browser language detection (`en` default / `id`) with a manual `EN | ID` header toggle.
+- **Settings & Interactive Guidebook Modal:** Replaced sun/moon icon with a dedicated Settings gear (`⚙️`) button. Features Guest Profile status, theme/language controls, and a 5-point collapsible User Guidebook with a detailed 14-category breakdown.
+- **Clear All History Confirmation:** Confirmation modal dialog before wiping calculation history to prevent accidental data loss.
 
-### Dihentikan (Deprecated)
-- N/A
+### 🎨 UI & UX Polish
+- **Visual 2nd Function Key Highlight:** Amber/yellow tint on `2nd` button with active glowing indicator and dynamic function transformations (`sin⁻¹`, `cos⁻¹`, `tan⁻¹`, `10ˣ`, `eˣ`, `x²`).
+- **Eye-Comfort Light Mode Theme:** Soft matte slate color palette (`#cbd5e1` to `#64748b`) designed for eye comfort without bright glare.
+- **Mobile Top-Aligned Settings Sheet:** Optimized Settings modal positioning on iPhone screens (`pt-4`, `max-h-[92vh]`).
+- **History Panel Action Clarity:** Action buttons updated to `Restore Formula` and `Append Result` with clean single-icon layouts.
+- **Human-Friendly Error Toast:** Replaced rigid error boxes with sleek, single-layer human error hints.
+- **Fresh Session State:** Initialized clean expression input (`''`) for new user sessions.
 
-### Dihapus (Removed)
-- N/A
+### 🧪 Quality & Tests
+- **Vitest Unit Tests:** All 84/84 tests passing 100%.
 
-### Diperbaiki (Fixed)
-- N/A
+---
 
-### Keamanan (Security)
-- Penegakan aturan ketat terhadap pencegahan kebocoran kredensial dan pemrosesan kalkulasi lokal (client-side).
+## [1.0.0] - 2026-08-01 (Initial Release)
 
-## [0.1.0] - 2026-08-01
-
-### Ditambahkan
-- Inisialisasi repositori proyek `01-smart-calculator-and-converter`.
+### 🚀 Added
+- **Scientific Calculator Engine:** Custom Shunting-Yard AST Parser with zero `eval()`. Supports basic arithmetic, trigonometry, logarithms, roots, and nested parentheses.
+- **Dual Application Modes:** Default Mode (large touch-friendly arithmetic) & Complete Mode (4-column scientific hierarchy).
+- **14+ Unit Categories:** Length, Weight, Temperature, Area, Volume, Time, Speed, Digital Data, Energy, Power, Pressure, Angle, Frequency, Fuel.
+- **Local-First History & Memory:** Persistent browser `LocalStorage` for history and calculator memory (`MC`, `MR`, `Ans`).
+- **Responsive Chassis:** iPhone & Android mobile chassis styling with glassmorphism effects.
