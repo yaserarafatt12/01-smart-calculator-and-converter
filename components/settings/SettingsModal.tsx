@@ -191,11 +191,11 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({
   return (
     <div
       onClick={onClose}
-      className="fixed inset-0 z-[100] bg-black/75 backdrop-blur-lg flex items-center justify-center p-4 animate-in fade-in duration-200 cursor-pointer font-sans"
+      className="fixed inset-0 z-[100] bg-black/75 backdrop-blur-lg flex items-start sm:items-center justify-center p-3.5 sm:p-4 pt-4 sm:pt-4 animate-in fade-in duration-200 cursor-pointer font-sans"
     >
       <div
         onClick={(e) => e.stopPropagation()}
-        className="w-full max-w-lg max-h-[85vh] bg-[#f1f5f9] dark:bg-[#11151c] backdrop-blur-2xl rounded-[32px] border border-slate-300/80 dark:border-slate-800 shadow-2xl overflow-y-auto p-5 sm:p-6 space-y-4 animate-in zoom-in-95 duration-200 cursor-default text-slate-900 dark:text-white"
+        className="w-full max-w-lg max-h-[92vh] sm:max-h-[85vh] bg-[#f1f5f9] dark:bg-[#11151c] backdrop-blur-2xl rounded-[32px] border border-slate-300/80 dark:border-slate-800 shadow-2xl overflow-y-auto p-5 sm:p-6 space-y-4 animate-in zoom-in-95 duration-200 cursor-default text-slate-900 dark:text-white"
       >
         {/* Header Title Bar with Settings Gear Icon */}
         <div className="flex items-center justify-between pb-3 border-b border-slate-300/80 dark:border-slate-800">
