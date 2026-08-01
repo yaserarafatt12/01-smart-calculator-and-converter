@@ -3,12 +3,12 @@
 @tailwind utilities;
 
 :root {
-  --bg-gradient: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 50%, #e2e8f0 100%);
-  --phone-bg: rgba(255, 255, 255, 0.98);
-  --phone-border: rgba(226, 232, 240, 1);
+  --bg-gradient: linear-gradient(135deg, #cbd5e1 0%, #94a3b8 50%, #64748b 100%);
+  --phone-bg: rgba(241, 245, 249, 0.98);
+  --phone-border: rgba(203, 213, 225, 1);
   --text-main: #0f172a;
-  --text-muted: #475569;
-  --glow-color: rgba(99, 102, 241, 0.12);
+  --text-muted: #334155;
+  --glow-color: rgba(99, 102, 241, 0.15);
 }
 
 .dark {
@@ -36,7 +36,7 @@ body {
   backdrop-filter: blur(28px);
   -webkit-backdrop-filter: blur(28px);
   border: 1px solid var(--phone-border);
-  box-shadow: 0 25px 60px -15px var(--glow-color), 0 10px 25px -5px rgba(0, 0, 0, 0.05), inset 0 1px 1px 0 rgba(255, 255, 255, 1);
+  box-shadow: 0 25px 60px -15px var(--glow-color), 0 10px 25px -5px rgba(0, 0, 0, 0.08), inset 0 1px 1px 0 rgba(255, 255, 255, 0.8);
 }
 
 .dark .phone-chassis {
@@ -51,11 +51,11 @@ body {
 }
 
 .glass-button {
-  background: rgba(255, 255, 255, 0.95);
+  background: rgba(226, 232, 240, 0.95);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(226, 232, 240, 1);
-  box-shadow: 0 2px 8px -2px rgba(0, 0, 0, 0.04);
+  border: 1px solid rgba(203, 213, 225, 1);
+  box-shadow: 0 2px 8px -2px rgba(0, 0, 0, 0.06);
 }
 
 .dark .glass-button {
@@ -67,7 +67,7 @@ body {
 }
 
 .glass-button:hover {
-  background: rgba(255, 255, 255, 1);
+  background: rgba(241, 245, 249, 1);
   border-color: rgba(99, 102, 241, 0.5);
 }
 
