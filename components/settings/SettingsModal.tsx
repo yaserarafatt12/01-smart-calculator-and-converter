@@ -33,6 +33,8 @@ import {
   Smartphone,
   Share2,
   Settings,
+  PlusSquare,
+  Bookmark,
 } from 'lucide-react';
 import { Language, TRANSLATIONS } from '@/lib/i18n/translations';
 
@@ -145,7 +147,7 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({
     {
       id: 'digital',
       name: language === 'id' ? 'Data Digital & Memori' : 'Digital Data & Storage',
-      desc: language === 'id' ? 'Konversi ukuran file & kuota internet (bit, Byte, KB, MB, GB, TB, KiB, MiB).' : 'Convert file sizes & internet bandwidth (bit, B, KB, MB, GB, TB, KiB, MiB).',
+      desc: language === 'id' ? 'Konversi ukuran file & kuota internet (bit, Byte, KB, MB, GB, TB, KiB, MiB).' : 'Convert file sizes & internet bandwidth (bit, B, KB, MB, GB, TB, KiB, MiB).' : 'Convert file sizes & internet bandwidth (bit, B, KB, MB, GB, TB, KiB, MiB).',
       icon: <Cpu className="w-4 h-4 text-blue-500" />,
     },
     {
@@ -228,7 +230,7 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({
             </div>
             <div>
               <div className="text-xs sm:text-sm font-black tracking-tight">
-                {language === 'id' ? 'Pasang Aplikasi di HP' : 'Install App on Phone'}
+                {language === 'id' ? 'Pasang Aplikasi di HP (iOS & Android)' : 'Install App on Phone'}
               </div>
               <div className="text-[11px] text-indigo-100 font-medium mt-0.5">
                 {isStandalone
@@ -250,13 +252,13 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({
           )}
         </div>
 
-        {/* iOS / Fallback Installation Instructions Modal Box */}
+        {/* iOS / Safari Installation Instructions Modal Box */}
         {showIOSInstructions && !isStandalone && (
           <div className="p-4 rounded-2xl bg-slate-200/90 dark:bg-slate-800/90 border border-slate-300 dark:border-slate-700/80 space-y-2 text-xs text-slate-800 dark:text-slate-200 animate-in fade-in duration-200">
             <div className="flex items-center justify-between font-extrabold text-slate-900 dark:text-white">
               <span className="flex items-center gap-1.5">
                 <Share2 className="w-4 h-4 text-indigo-500" />
-                {language === 'id' ? 'Cara Pasang di HP (iOS / Android):' : 'Installation Steps (iOS / Android):'}
+                {language === 'id' ? 'Panduan Pasang di iPhone (Safari):' : 'iPhone Installation Guide:'}
               </span>
               <button
                 type="button"
@@ -266,21 +268,21 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({
                 ✕
               </button>
             </div>
-            <ol className="list-decimal pl-5 space-y-1 font-medium text-[11px]">
+            <ol className="list-decimal pl-5 space-y-2 font-medium text-[11px]">
               <li>
                 {language === 'id'
-                  ? 'Ketuk tombol Bagikan (Share) di menu bawah peramban Anda.'
-                  : 'Tap the Share button in your mobile browser bottom menu.'}
+                  ? 'Ketuk tombol Bagikan / Share (ikon kotak tanda panah ke atas) di peramban Safari Anda.'
+                  : 'Tap the Share button (square icon with arrow pointing up) in Safari.'}
               </li>
               <li>
                 {language === 'id'
-                  ? 'Pilih menu "Tambah ke Layar Utama" ("Add to Home Screen").'
-                  : 'Select "Add to Home Screen" from the menu options.'}
+                  ? 'Geser opsi menu ke bawah, lalu ketuk "Tambah ke Layar Utama" ("Add to Home Screen") atau "Tambah Pintasan".'
+                  : 'Scroll down and tap "Add to Home Screen" or "Add Shortcut".'}
               </li>
               <li>
                 {language === 'id'
-                  ? 'Aplikasi akan muncul sebagai ikon mandiri di layar HP Anda!'
-                  : 'The app icon will instantly appear on your mobile home screen!'}
+                  ? 'Ketuk "Tambah" di pojok kanan atas. Ikon Smart Calc akan langsung muncul di HP Anda!'
+                  : 'Tap "Add" at the top right. The app icon will appear on your home screen!'}
               </li>
             </ol>
           </div>
