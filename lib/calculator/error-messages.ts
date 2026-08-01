@@ -21,8 +21,8 @@ export function getErrorMessage(
       return {
         error: errorType,
         title: 'Masukan Kosong',
-        message: 'Ekspresi matematika tidak boleh kosong.',
-        hint: 'Masukkan angka dan operator matematika terlebih dahulu (contoh: 12 + 5).',
+        message: 'Ketik angka atau rumus matematika terlebih dahulu.',
+        hint: 'Contoh: 12 + 5 atau sin(45)',
         index,
       };
 
@@ -30,26 +30,26 @@ export function getErrorMessage(
       return {
         error: errorType,
         title: 'Angka Terlalu Panjang',
-        message: 'Angka yang dimasukkan melebihi batas maksimum 15 digit.',
-        hint: 'Gunakan angka yang lebih pendek untuk menjaga akurasi perhitungan.',
+        message: 'Panjang angka disarankan maksimal 15 digit.',
+        hint: 'Gunakan angka yang lebih ringkas agar hasil tetap presisi.',
         index,
       };
 
     case 'CONSECUTIVE_OPERATORS':
       return {
         error: errorType,
-        title: 'Operator Berurutan',
-        message: `Ditemukan operator berurutan yang tidak valid pada indeks ${index}.`,
-        hint: "Hapus salah satu operator yang berdampingan (contoh: ubah '5 ++ 3' menjadi '5 + 3').",
+        title: 'Simbol Berurutan',
+        message: 'Terdapat dua operator yang berdampingan secara tidak sah.',
+        hint: "Hapus salah satu simbol (contoh: ubah '5 ++ 3' menjadi '5 + 3').",
         index,
       };
 
     case 'INCOMPLETE_PARENTHESIS':
       return {
         error: errorType,
-        title: 'Tanda Kurung Tidak Lengkap',
-        message: `Tanda kurung tidak seimbang atau belum ditutup pada indeks ${index}.`,
-        hint: "Pastikan setiap tanda kurung buka '(' memiliki pasangan tanda kurung tutup ')'.",
+        title: 'Tanda Kurung Belum Pas',
+        message: 'Jumlah tanda kurung buka `(` dan tutup `)` belum seimbang.',
+        hint: "Pastikan setiap tanda buka '(' memiliki pasangan tanda tutup ')'.",
         index,
       };
 
@@ -57,17 +57,17 @@ export function getErrorMessage(
       return {
         error: errorType,
         title: 'Pembagian dengan Nol',
-        message: `Operasi pembagian dengan nol ditemukan pada indeks ${index}.`,
-        hint: 'Pembagian dengan angka 0 tidak didefinisikan dalam matematika. Ubah penyebut menjadi angka selain 0.',
+        message: 'Pembagian dengan angka 0 tidak terdefinisi dalam matematika.',
+        hint: 'Pembagian dengan nol tidak didefinisikan. Ganti angka penyebut dengan nilai selain nol.',
         index,
       };
 
     case 'INVALID_CHARACTER':
       return {
         error: errorType,
-        title: 'Karakter Tidak Valid',
-        message: `Karakter '${rawToken || ''}' pada indeks ${index} tidak dikenali.`,
-        hint: 'Gunakan hanya angka (0-9), titik desimal (.), operator (+, -, *, /), dan tanda kurung ().',
+        title: 'Karakter Tidak Dikenali',
+        message: `Karakter '${rawToken || ''}' tidak dapat dihitung.`,
+        hint: 'Gunakan angka (0-9), operator (+, -, ×, ÷), atau fungsi ilmiah.',
         index,
         rawToken,
       };
@@ -76,9 +76,9 @@ export function getErrorMessage(
     default:
       return {
         error: errorType,
-        title: 'Sintaks Tidak Valid',
-        message: `Format ekspresi matematika tidak sesuai pada indeks ${index}.`,
-        hint: 'Periksa kembali urutan angka, operator, dan penempatan tanda kurung dalam ekspresi Anda.',
+        title: 'Format Rumus Belum Sesuai',
+        message: 'Periksa kembali susunan angka, simbol, atau tanda kurung.',
+        hint: "Contoh susunan yang benar: (7 × 4) ÷ 7",
         index,
       };
   }
