@@ -1,36 +1,34 @@
-# Changelog — Smart Calculator & Unit Converter
+# Changelog - Smart Calculator & Unit Converter
 
-All notable changes to this project will be documented in this file.
-
-The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
-and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+All notable changes to this project are documented in this file.
 
 ---
 
-## [1.0.0] - 2026-08-01
+## [1.0.1] - 2026-08-01 (Patch & User Feedback Release)
 
-### Added
-- **Core Math Engine:** Custom Shunting-Yard AST parser with zero `eval()` dependency.
-- **Dual Mode System:** Default Mode (large touch-friendly arithmetic layout) & Complete Mode (4-column scientific bento grid).
-- **2nd Function Transformation:** Active mode transformation for `sin⁻¹`, `cos⁻¹`, `tan⁻¹`, `10ˣ`, `eˣ`, `x²` with amber glow indicator.
-- **14+ Unit Categories:** Length, Weight/Mass, Temperature, Area, Volume, Time, Speed, Digital Data, Energy, Power, Pressure, Angle, Frequency, and Fuel.
-- **Unit Search Bar:** Real-time unit search across all categories.
-- **All Results Drawer:** Instant side-by-side conversion for all units within a selected category.
-- **Calculation History:** LocalStorage persistence with bottom-sheet UI, modal confirmation before clearing all, and explicit action buttons (`↗ Restore Formula`, `+ Append Result`).
-- **Display Formatting:** Thousands separators & 6-decimal UI formatting with full unrounded precision copy support.
-- **Internationalization (i18n):** Automatic browser language detection (English / Indonesian) with `EN | ID` header toggle.
-- **Vercel Deployment Config:** `vercel.json` for zero-config production deployments.
+### 🌟 Added
+- **Multi-Language Support (i18n):** Client-side automatic browser language detection (`en` default / `id`) with manual header globe switcher `EN | ID`.
+- **Settings & Interactive Guidebook Modal:** Replaced top-right sun/moon icon with a dedicated Settings gear (`⚙️`) button. Includes Guest Profile status, theme/language controls, and a 5-point collapsible User Guidebook with detailed breakdown of all 14 unit categories.
+- **Clear All History Confirmation:** Confirmation modal dialog before wiping calculation history to prevent accidental data loss.
 
-### Changed
-- Reordered scientific keypad hierarchy to place `AC`, `C`, and `⌫` at Row 1 directly below the HASIL card.
-- Made expanded converter categories scrollable (`max-h-60`) to prevent pushing the form off-screen.
-- Preserved open category selection state without auto-collapsing.
+### 🎨 UI & UX Improvements
+- **2nd Function Key Visual Highlight:** Amber/yellow tint on `2nd` button right from the start with glowing active indicator and dynamic function transformations (`sin⁻¹`, `cos⁻¹`, `tan⁻¹`, `10ˣ`, `eˣ`, `x²`).
+- **History Panel Action Clarity:** Clarified action text to `Restore Formula` / `Muat Ulang Rumus` and `Append Result` / `Sisipkan Hasil` with clean single-icon action buttons.
+- **Converter Layout & Selection:** Kept category grid open when selecting units without auto-collapse and increased vertical spacing above conversion inputs for a relaxed, breathable bottom layout.
+- **Human-Friendly Error Toast:** Replaced robotic error boxes with sleek, single-layer human error hints.
+- **Light Mode High-Contrast Background:** Updated Light Mode background to crisp off-white light slate (`#f8fafc` to `#f1f5f9`) for high contrast readability.
+- **Fresh Session State:** Cleared initial placeholder expressions (`0` / clean input) for new user sessions.
 
-### Fixed
-- Fixed floating-point representation anomalies in result displays.
-- Resolved next.js Webpack dev chunk cache conflicts during builds.
+### 🧪 Quality & Tests
+- **Vitest Unit Tests:** All 84/84 tests passing 100%.
 
 ---
 
-## [1.0.1] - Planned Maintenance Release
-- Minor bug fixes gathered from user feedback after initial deployment.
+## [1.0.0] - 2026-08-01 (Initial Release)
+
+### 🚀 Added
+- **Scientific Calculator Engine:** Custom Shunting-Yard AST Parser with zero `eval()`. Supports basic arithmetic, trigonometry, logarithms, roots, and nested parentheses.
+- **Dual Application Modes:** Default Mode (large touch-friendly arithmetic) & Complete Mode (4-column scientific hierarchy).
+- **14+ Unit Categories:** Length, Weight, Temperature, Area, Volume, Time, Speed, Digital Data, Energy, Power, Pressure, Angle, Frequency, Fuel.
+- **Local-First History & Memory:** Persistent browser `LocalStorage` for history and calculator memory (`MC`, `MR`, `Ans`).
+- **Responsive Chassis:** iPhone & Android mobile chassis styling with glassmorphism effects.

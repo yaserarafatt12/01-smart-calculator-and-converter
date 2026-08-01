@@ -1,14 +1,14 @@
-# Smart Calculator & Unit Converter v1.0.0
+# Smart Calculator & Unit Converter v1.0.1
 
 > A high-precision, Local-First scientific calculator & 14+ unit converter web application built with Next.js 14, TypeScript, Tailwind CSS, and a custom Shunting-Yard AST parser (Zero `eval()`).
 
 ---
 
-## 📌 Project Status: `v1.0.0 (Release Frozen)`
+## 📌 Project Status: `v1.0.1 (Stable & Polished Release)`
 
 - 🌐 **Live Application:** [https://smart-calculator-and-converter.vercel.app](https://smart-calculator-and-converter.vercel.app)
 - 💻 **GitHub Repository:** [https://github.com/yaserarafatt12/01-smart-calculator-and-converter](https://github.com/yaserarafatt12/01-smart-calculator-and-converter)
-- ✅ **Core Implementation:** 100% Complete & Stable
+- ✅ **Core Implementation:** 100% Complete & Stable (v1.0.1 Released)
 - ✅ **Unit Test Coverage:** 84/84 Vitest Unit Tests Passing (100%)
 - ✅ **Responsiveness & Accessibility:** Verified on 320px, 360px, 390px, and 768px+ screens
 - ✅ **Security & Privacy:** 100% Local-First (In-Browser Storage), Zero `eval()`, Zero Ad Trackers
@@ -33,12 +33,12 @@ Standard web calculators and online unit converters suffer from critical flaws:
   - **Default Mode:** Clean, large touch-friendly buttons for everyday arithmetic.
   - **Complete Mode:** A 4-column 9-row scientific keypad following professional scientific calculator hierarchy (AC, C, ⌫ at Row 1) with an active `2nd` mode (`sin` $\rightarrow$ `sin⁻¹`, `log` $\rightarrow$ `10ˣ`, `ln` $\rightarrow$ `eˣ`, `√x` $\rightarrow$ `x²`).
 - **14+ Unit Converter Categories:** Real-time conversion across Length, Weight & Mass, Temperature, Area, Volume, Time, Speed, Digital Data, Energy, Power, Pressure, Angle, Frequency, and Fuel.
-- **Interactive Calculation History:** Saved locally in browser `LocalStorage` with explicit **"↗ Restore Formula"** and **"+ Append Result"** actions.
-- **Auto-Detect i18n:** Automatically detects browser language (English / Indonesian) with a manual `EN | ID` header toggle.
+- **Interactive Calculation History:** Saved locally in browser `LocalStorage` with explicit **"Restore Formula"** and **"Append Result"** actions.
+- **Auto-Detect i18n & Settings:** Automatically detects browser language (English / Indonesian) with a manual `EN | ID` header toggle and an interactive Settings & Guidebook modal.
 
 ---
 
-## 🚀 Key Features
+## 🚀 Key Features in v1.0.1
 
 - [x] **High-Precision Scientific Engine:** Arithmetic (`+`, `-`, `×`, `÷`), trigonometry (`sin`, `cos`, `tan`, `sin⁻¹`, `cos⁻¹`, `tan⁻¹`), logarithms (`log`, `ln`, `10ˣ`, `eˣ`), exponents (`^`), roots (`√x`), squaring (`x²`), and nested parentheses.
 - [x] **Visual 2nd Function Key:** Amber glow active state with dynamic function label transformations.
@@ -47,7 +47,8 @@ Standard web calculators and online unit converters suffer from critical flaws:
 - [x] **All Results Drawer:** View side-by-side conversions for all units within a category simultaneously.
 - [x] **Memory & History Management:** `MC`, `MR`, `Ans` keys and an interactive history bottom sheet with modal confirmation before clearing all entries.
 - [x] **Safe AST Parser:** Zero `eval()` execution with division-by-zero protection and inline syntax error highlights.
-- [x] **Responsive & Accessible Design:** Dark/Light mode support, fluid layout adaptivity from 320px mobile screens to desktop.
+- [x] **Settings & Interactive Guidebook:** Comprehensive 5-point user guide detailing app purpose, scientific modes, 2nd key, and 14-category breakdown.
+- [x] **Responsive & High-Contrast Design:** Dark/Light mode support with crisp off-white Light Mode theme, fluid layout adaptivity from 320px mobile screens to desktop.
 - [x] **Multi-Language (i18n):** Client-side browser auto-detection (English / Indonesian) with manual `EN | ID` toggle.
 
 ---
@@ -71,30 +72,9 @@ npm test
 
 ---
 
-## 🔒 Security & Privacy Audit
+## 📜 Release Notes (Changelog v1.0.1)
 
-1. **Zero `eval()` execution:** All math string expressions are tokenized and parsed into RPN AST trees, making code injection or XSS attacks impossible.
-2. **Zero Credentials in Git:** `.env.local` and sensitive credentials are excluded via `.gitignore`.
-3. **Local-First Privacy:** Calculation history and memory reside exclusively within the user's browser `LocalStorage`. No external databases or user tracking servers.
-4. **Vercel Security Headers:** Equipped with `X-Content-Type-Options: nosniff`, `X-Frame-Options: DENY`, and `X-XSS-Protection: 1; mode=block`.
-
----
-
-## 💻 Local Installation
-
-```bash
-# 1. Clone repository
-git clone https://github.com/yaserarafatt12/01-smart-calculator-and-converter.git
-cd 01-smart-calculator-and-converter
-
-# 2. Install dependencies
-npm install
-
-# 3. Start development server
-npm run dev
-```
-
-Open [http://localhost:3000](http://localhost:3000) in your browser.
+See full release notes in [`docs/launch-assets/changelog.md`](docs/launch-assets/changelog.md).
 
 ---
 

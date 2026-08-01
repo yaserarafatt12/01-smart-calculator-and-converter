@@ -101,7 +101,7 @@ export const TRANSLATIONS: Record<Language, Translations> = {
     guidebookTitle: 'Complete User Guidebook',
     guidebookSubtitle: 'Explore app features, scientific modes, and 14+ unit categories.',
     aboutTitle: 'About Application',
-    versionLabel: 'Smart Calculator & Unit Converter v1.0.0',
+    versionLabel: 'Smart Calculator & Unit Converter v1.0.1',
   },
   id: {
     calculator: 'Kalkulator',
@@ -149,7 +149,7 @@ export const TRANSLATIONS: Record<Language, Translations> = {
     guidebookTitle: 'Buku Panduan Penggunaan Lengkap',
     guidebookSubtitle: 'Pelajari fitur aplikasi, mode ilmiah, dan rincian 14+ kategori satuan.',
     aboutTitle: 'Tentang Aplikasi',
-    versionLabel: 'Kalkulator & Konverter Satuan v1.0.0',
+    versionLabel: 'Kalkulator & Konverter Satuan v1.0.1',
   },
 };
 
