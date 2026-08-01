@@ -1,54 +1,34 @@
-# Dokumen Kebijakan Privasi & Perlindungan Data (Data Privacy Policy)
+# Privacy Specification & Data Protection Policy
 
-**Nama Proyek:** Kalkulator Pintar dan Konverter (Smart Calculator & Converter)  
-**Terakhir Diperbarui:** 2026-08-01  
-**Prinsip Utama:** Privasi Berbasis Desain (*Privacy by Design*) & Pemrosesan 100% Lokal Utamakan Pengguna.
-
----
-
-## 1. Komitmen Privasi Utama
-
-Aplikasi **Kalkulator Pintar dan Konverter** dibangun dengan memegang teguh prinsip **Privacy-First & Zero Data Collection**. Kami percaya bahwa kalkulasi harian, perhitungan finansial pribadi, dan riwayat konversi pengguna adalah milik pribadi yang tidak boleh dikumpulkan, dilacak, atau dijual ke pihak mana pun.
+**Project Name:** Smart Calculator & Unit Converter  
+**Repository:** `01-smart-calculator-and-converter`  
+**Effective Date:** 2026-08-01  
 
 ---
 
-## 2. Rincian Data yang Diproses
+## 1. Privacy First Commitment
 
-| Kategori Data | Jenis Data Spesifik | Tujuan Pengumpulan | Lokasi Pemrosesan & Penyimpanan |
-|---|---|---|---|
-| **Riwayat Kalkulasi** | Ekspresi angka & hasil perhitungan | Menampilkan riwayat perhitungan sebelumnya | Peramban Lokal (`LocalStorage` perangkat pengguna) |
-| **Nilai Memori** | Nilai terimpan (M+, M-, MR) | Fungsi memori kalkulator bawaan | Peramban Lokal (`LocalStorage` perangkat pengguna) |
-| **Preferensi UI** | Pilihan tema (Dark/Light mode) | Keberlanjutan tampilan visual | Peramban Lokal (`LocalStorage` perangkat pengguna) |
-| **Data Pengidentifikasi** | Alamat Email, IP, ID Perangkat | **TIDAK DIKUMPULKAN** | Tidak ada |
-| **Data Lokasi** | Koordinat GPS, Negara | **TIDAK DIKUMPULKAN** | Tidak ada |
+Smart Calculator & Unit Converter is built around a **100% Local-First & Zero Telemetry** privacy design. User calculation history, theme preferences, and unit conversion states remain exclusively stored on the user's local web browser device.
 
 ---
 
-## 3. Pemrosesan Lokal vs Cloud (Local-First Architecture)
+## 2. Data Collection & Processing
 
-1. **Pemrosesan 100% di Perangkat Pengguna (*Client-Side Processing*):**
-   - Seluruh evaluasi ekspresi matematika, rumus trigonometri, dan perhitungan konversi unit diproses secara langsung di memori CPU/peramban pengguna.
-   - Tidak ada angka, rumus, atau masukan teks yang dikirimkan melalui jaringan internet ke server backend atau pihak ketiga.
-2. **Penyimpanan Lokal Mandiri:**
-   - Data riwayat hanya berada di `LocalStorage` peramban web pengguna.
-   - Pengguna dapat menghapus seluruh riwayat kapan saja hanya dengan menekan tombol **"Hapus Riwayat"** di antarmuka aplikasi.
+### 2.1 Data Collection
+- **Zero Remote Telemetry:** No analytics scripts, Google Analytics, tracking pixels, or third-party trackers are included in the application.
+- **Zero Server Storage:** The app operates without a backend database or remote cloud server for storing calculation data.
 
----
-
-## 4. Kebijakan Retensi & Penghapusan Data
-
-- **Masa Penyimpanan:** Riwayat disimpan di peramban lokal pengguna hingga maksimal 50 catatan terbaru atau sampai pengguna membersihkan data peramban (*browser cache/storage*).
-- **Hak Penghapusan Permanen:** Tombol "Hapus Riwayat" menghapus secara seketika (*instant purge*) seluruh catatan kalkulasi dari `LocalStorage` tanpa menyisakan cadangan.
+### 2.2 Local Storage Usage
+The application utilizes the browser's `LocalStorage` API strictly for functional client-side features:
+1. `smart_calc_history`: Stores up to 20 recent calculation transactions (expression, result, timestamp).
+2. `smart_calc_app_mode`: Stores user UI layout preference (`default` or `complete`).
+3. `smart_calc_lang`: Stores user language preference (`en` or `id`).
+4. `smart_calc_pwa_dismissed`: Stores PWA prompt dismissal state.
 
 ---
 
-## 5. Pihak Ketiga & Pelacak (No Trackers)
+## 3. Data Control & Deletion
 
-1. **Bebas Pelacak Iklan:** Aplikasi ini 100% bebas dari skrip pelacak iklan (*Google Analytics, Facebook Pixel, ad trackers*).
-2. **Tanpa Penggunaan AI External:** Perhitungan matematika menggunakan engine internal deterministic murni tanpa mengirimkan masukan ke API LLM eksternal.
-
----
-
-## 6. Kontak & Pertanyaan Privasi
-
-Jika Anda memiliki pertanyaan mengenai kebijakan privasi ini, Anda dapat mengajukan pertanyaan melalui repositori GitHub resmi pada seksi *Issues*.
+Users maintain 100% ownership and control over their local data:
+- **Clear History:** Users can delete individual history items or wipe all calculation history at any time using the "Clear All History" button.
+- **Browser Clear Data:** Clearing browser cache or site data completely resets all stored preferences.
