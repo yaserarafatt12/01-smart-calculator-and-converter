@@ -55,14 +55,14 @@ export const ScientificKeypad: React.FC<ScientificKeypadProps> = ({
           <Delete className="w-5 h-5 mx-auto" />
         </button>
 
-        {/* 2nd Button with Prominent Active Indicator */}
+        {/* 2nd Button with Distinct Yellow/Amber Tint from the Start */}
         <button
           type="button"
           onClick={() => setIsSecondMode(!isSecondMode)}
           className={`h-11 sm:h-12 rounded-2xl text-xs sm:text-sm font-extrabold transition-all btn-press-effect flex items-center justify-center gap-1.5 border shadow-sm ${
             isSecondMode
               ? 'bg-amber-500 text-slate-950 border-amber-400 shadow-lg shadow-amber-500/40 font-black scale-[1.03]'
-              : 'bg-slate-200/90 dark:bg-slate-800/90 text-slate-800 dark:text-slate-200 hover:bg-slate-300 dark:hover:bg-slate-700 border-slate-300/80 dark:border-slate-700/60'
+              : 'bg-amber-500/15 dark:bg-amber-500/20 text-amber-600 dark:text-amber-400 hover:bg-amber-500/30 border-amber-500/40 font-extrabold'
           }`}
           title={isSecondMode ? 'Mode 2nd Aktif (Fungsi Invers)' : 'Aktifkan Mode 2nd'}
         >
@@ -137,7 +137,7 @@ export const ScientificKeypad: React.FC<ScientificKeypadProps> = ({
           onClick={() => onKeyPress(isSecondMode ? '^2' : '√(')}
           className={`h-11 sm:h-12 rounded-2xl text-xs sm:text-sm font-extrabold transition-all btn-press-effect flex items-center justify-center shadow-sm ${
             isSecondMode
-              ? 'bg-amber-500/20 text-amber-600 dark:text-amber-300 border border-amber-500/40'
+              ? 'bg-amber-500/25 text-amber-600 dark:text-amber-300 border border-amber-500/50 font-black'
               : 'bg-slate-200/90 dark:bg-slate-800/90 text-slate-800 dark:text-slate-200 hover:bg-slate-300 dark:hover:bg-slate-700 border border-slate-300/80 dark:border-slate-700/60'
           }`}
         >
@@ -150,7 +150,7 @@ export const ScientificKeypad: React.FC<ScientificKeypadProps> = ({
           onClick={() => onKeyPress(isSecondMode ? 'asin(' : 'sin(')}
           className={`h-11 sm:h-12 rounded-2xl text-xs sm:text-sm font-extrabold transition-all btn-press-effect border flex items-center justify-center shadow-sm ${
             isSecondMode
-              ? 'bg-amber-500/20 text-amber-600 dark:text-amber-300 border-amber-500/40 font-black'
+              ? 'bg-amber-500/25 text-amber-600 dark:text-amber-300 border-amber-500/50 font-black'
               : 'bg-slate-200/90 dark:bg-slate-800/90 text-indigo-600 dark:text-indigo-400 hover:bg-indigo-600 hover:text-white border-slate-300/80 dark:border-slate-700/60'
           }`}
         >
@@ -162,7 +162,7 @@ export const ScientificKeypad: React.FC<ScientificKeypadProps> = ({
           onClick={() => onKeyPress(isSecondMode ? 'acos(' : 'cos(')}
           className={`h-11 sm:h-12 rounded-2xl text-xs sm:text-sm font-extrabold transition-all btn-press-effect border flex items-center justify-center shadow-sm ${
             isSecondMode
-              ? 'bg-amber-500/20 text-amber-600 dark:text-amber-300 border-amber-500/40 font-black'
+              ? 'bg-amber-500/25 text-amber-600 dark:text-amber-300 border-amber-500/50 font-black'
               : 'bg-slate-200/90 dark:bg-slate-800/90 text-indigo-600 dark:text-indigo-400 hover:bg-indigo-600 hover:text-white border-slate-300/80 dark:border-slate-700/60'
           }`}
         >
@@ -174,7 +174,7 @@ export const ScientificKeypad: React.FC<ScientificKeypadProps> = ({
           onClick={() => onKeyPress(isSecondMode ? 'atan(' : 'tan(')}
           className={`h-11 sm:h-12 rounded-2xl text-xs sm:text-sm font-extrabold transition-all btn-press-effect border flex items-center justify-center shadow-sm ${
             isSecondMode
-              ? 'bg-amber-500/20 text-amber-600 dark:text-amber-300 border-amber-500/40 font-black'
+              ? 'bg-amber-500/25 text-amber-600 dark:text-amber-300 border-amber-500/50 font-black'
               : 'bg-slate-200/90 dark:bg-slate-800/90 text-indigo-600 dark:text-indigo-400 hover:bg-indigo-600 hover:text-white border-slate-300/80 dark:border-slate-700/60'
           }`}
         >
@@ -187,7 +187,7 @@ export const ScientificKeypad: React.FC<ScientificKeypadProps> = ({
           onClick={() => onKeyPress(isSecondMode ? '10^(' : 'log(')}
           className={`h-11 sm:h-12 rounded-2xl text-xs sm:text-sm font-extrabold transition-all btn-press-effect border flex items-center justify-center shadow-sm ${
             isSecondMode
-              ? 'bg-amber-500/20 text-amber-600 dark:text-amber-300 border-amber-500/40 font-black'
+              ? 'bg-amber-500/25 text-amber-600 dark:text-amber-300 border-amber-500/50 font-black'
               : 'bg-slate-200/90 dark:bg-slate-800/90 text-indigo-600 dark:text-indigo-400 hover:bg-indigo-600 hover:text-white border-slate-300/80 dark:border-slate-700/60'
           }`}
         >
@@ -201,7 +201,7 @@ export const ScientificKeypad: React.FC<ScientificKeypadProps> = ({
           onClick={() => onKeyPress(isSecondMode ? 'e^(' : 'ln(')}
           className={`h-11 sm:h-12 rounded-2xl text-xs sm:text-sm font-extrabold transition-all btn-press-effect border flex items-center justify-center shadow-sm ${
             isSecondMode
-              ? 'bg-amber-500/20 text-amber-600 dark:text-amber-300 border-amber-500/40 font-black'
+              ? 'bg-amber-500/25 text-amber-600 dark:text-amber-300 border-amber-500/50 font-black'
               : 'bg-slate-200/90 dark:bg-slate-800/90 text-indigo-600 dark:text-indigo-400 hover:bg-indigo-600 hover:text-white border-slate-300/80 dark:border-slate-700/60'
           }`}
         >
