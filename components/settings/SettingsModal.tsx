@@ -147,7 +147,7 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({
     {
       id: 'digital',
       name: language === 'id' ? 'Data Digital & Memori' : 'Digital Data & Storage',
-      desc: language === 'id' ? 'Konversi ukuran file & kuota internet (bit, Byte, KB, MB, GB, TB, KiB, MiB).' : 'Convert file sizes & internet bandwidth (bit, B, KB, MB, GB, TB, KiB, MiB).' : 'Convert file sizes & internet bandwidth (bit, B, KB, MB, GB, TB, KiB, MiB).',
+      desc: language === 'id' ? 'Konversi ukuran file & kuota internet (bit, Byte, KB, MB, GB, TB, KiB, MiB).' : 'Convert file sizes & internet bandwidth (bit, B, KB, MB, GB, TB, KiB, MiB).',
       icon: <Cpu className="w-4 h-4 text-blue-500" />,
     },
     {
