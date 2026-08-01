@@ -32,6 +32,7 @@ import {
   Download,
   Smartphone,
   Share2,
+  Settings,
 } from 'lucide-react';
 import { Language, TRANSLATIONS } from '@/lib/i18n/translations';
 
@@ -194,15 +195,20 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({
         onClick={(e) => e.stopPropagation()}
         className="w-full max-w-lg max-h-[85vh] bg-[#f1f5f9] dark:bg-[#11151c] backdrop-blur-2xl rounded-[32px] border border-slate-300/80 dark:border-slate-800 shadow-2xl overflow-y-auto p-5 sm:p-6 space-y-4 animate-in zoom-in-95 duration-200 cursor-default text-slate-900 dark:text-white"
       >
-        {/* Header Title Bar */}
+        {/* Header Title Bar with Settings Gear Icon */}
         <div className="flex items-center justify-between pb-3 border-b border-slate-300/80 dark:border-slate-800">
-          <div>
-            <h2 className="text-base sm:text-lg font-extrabold tracking-tight text-slate-900 dark:text-white">
-              {t.settingsTitle}
-            </h2>
-            <p className="text-[11px] text-slate-600 dark:text-slate-400 font-medium">
-              {language === 'id' ? 'Kelola sesi, tampilan, dan panduan fitur' : 'Manage session, theme, and user guide'}
-            </p>
+          <div className="flex items-center gap-2.5">
+            <div className="p-2 rounded-2xl bg-indigo-600 text-white shadow-md">
+              <Settings strokeWidth={2.5} className="w-5 h-5 animate-spin-slow" />
+            </div>
+            <div>
+              <h2 className="text-base sm:text-lg font-extrabold tracking-tight text-slate-900 dark:text-white">
+                {t.settingsTitle}
+              </h2>
+              <p className="text-[11px] text-slate-600 dark:text-slate-400 font-medium">
+                {language === 'id' ? 'Kelola sesi, tampilan, dan panduan fitur' : 'Manage session, theme, and user guide'}
+              </p>
+            </div>
           </div>
 
           <button
@@ -280,19 +286,14 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({
           </div>
         )}
 
-        {/* SECTION 2: Clean Guest Profile Card */}
+        {/* SECTION 2: Clean Guest Profile Card without 'Active' badge */}
         <div className="p-3.5 rounded-2xl bg-slate-200/80 dark:bg-slate-800/60 border border-slate-300/80 dark:border-slate-700/60 flex items-center justify-between">
           <div className="flex items-center gap-3">
             <div className="w-9 h-9 rounded-2xl bg-indigo-600 text-white flex items-center justify-center shadow-md font-extrabold text-sm">
               <UserCheck strokeWidth={2.5} className="w-4 h-4" />
             </div>
-            <div>
-              <div className="text-xs sm:text-sm font-extrabold tracking-tight flex items-center gap-1.5 text-slate-900 dark:text-white">
-                <span>{t.guestProfile}</span>
-                <span className="px-2 py-0.5 rounded-full bg-emerald-500/20 text-emerald-700 dark:text-emerald-400 text-[10px] font-black border border-emerald-500/30">
-                  Active
-                </span>
-              </div>
+            <div className="text-xs sm:text-sm font-extrabold tracking-tight text-slate-900 dark:text-white">
+              {t.guestProfile}
             </div>
           </div>
 
