@@ -9,8 +9,7 @@ import {
   Globe,
   BookOpen,
   ShieldCheck,
-  HelpCircle,
-  Sparkles,
+  Zap,
   Calculator,
   Layers,
   History,
@@ -18,6 +17,21 @@ import {
   ChevronRight,
   ChevronDown,
   CheckCircle2,
+  Sparkles,
+  Info,
+  Ruler,
+  Scale,
+  Thermometer,
+  Square,
+  Box,
+  Clock,
+  Cpu,
+  Flame,
+  Activity,
+  Gauge,
+  Compass,
+  Radio,
+  Droplet,
 } from 'lucide-react';
 import { Language, TRANSLATIONS } from '@/lib/i18n/translations';
 
@@ -40,7 +54,7 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({
   onToggleLanguage,
   historyCount,
 }) => {
-  const [openGuideSection, setOpenGuideSection] = useState<string | null>('modes');
+  const [openGuideSection, setOpenGuideSection] = useState<string | null>('purpose');
   const t = TRANSLATIONS[language];
   const isDark = theme === 'dark';
 
@@ -49,6 +63,93 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({
   const toggleGuide = (sectionId: string) => {
     setOpenGuideSection((prev) => (prev === sectionId ? null : sectionId));
   };
+
+  const categoriesDetail = [
+    {
+      id: 'length',
+      name: language === 'id' ? 'Panjang & Jarak' : 'Length & Distance',
+      desc: language === 'id' ? 'Konversi dimensi benda, tinggi badan, & jarak tempuh (mm, cm, m, km, inch, feet, yard, mile).' : 'Convert object dimensions, heights, & travel distances (mm, cm, m, km, in, ft, yd, mi).',
+      icon: <Ruler className="w-4 h-4 text-indigo-500" />,
+    },
+    {
+      id: 'weight',
+      name: language === 'id' ? 'Berat & Massa' : 'Weight & Mass',
+      desc: language === 'id' ? 'Konversi timbangan badan, barang, & muatan (mg, gram, kg, ton, pound/lb, ounce/oz).' : 'Convert body weights, commodities, & cargo (mg, g, kg, ton, lb, oz).',
+      icon: <Scale className="w-4 h-4 text-violet-500" />,
+    },
+    {
+      id: 'temperature',
+      name: language === 'id' ? 'Suhu & Temperatur' : 'Temperature',
+      desc: language === 'id' ? 'Konversi cuaca & sains kelautan (°C Celsius, °F Fahrenheit, K Kelvin, °R Rankine).' : 'Convert weather & scientific temperatures (°C, °F, K, °R).',
+      icon: <Thermometer className="w-4 h-4 text-rose-500" />,
+    },
+    {
+      id: 'area',
+      name: language === 'id' ? 'Luas & Bidang' : 'Area & Surface',
+      desc: language === 'id' ? 'Perhitungan denah ruangan, tanah, & wilayah (m², km², hektar/ha, acre, sq ft).' : 'Calculate floor plans, land plots, & territories (m², km², ha, acre, sq ft).',
+      icon: <Square className="w-4 h-4 text-amber-500" />,
+    },
+    {
+      id: 'volume',
+      name: language === 'id' ? 'Volume & Takaran Liquid' : 'Volume & Fluid Capacity',
+      desc: language === 'id' ? 'Konversi isi tangki, bahan resep, & wadah (mL, Liter, m³, galon, fluid oz).' : 'Convert container capacities, liquid recipes, & tanks (mL, L, m³, gallon, fl oz).',
+      icon: <Box className="w-4 h-4 text-cyan-500" />,
+    },
+    {
+      id: 'time',
+      name: language === 'id' ? 'Waktu & Durasi' : 'Time & Duration',
+      desc: language === 'id' ? 'Konversi durasi kerja, stopwatch, & kalender (ms, detik, menit, jam, hari, minggu, tahun).' : 'Convert work durations, stopwatches, & calendars (ms, sec, min, hr, day, wk, yr).',
+      icon: <Clock className="w-4 h-4 text-emerald-500" />,
+    },
+    {
+      id: 'speed',
+      name: language === 'id' ? 'Kecepatan & Lajuan' : 'Speed & Velocity',
+      desc: language === 'id' ? 'Konversi laju kendaraan, angin, & kapal (m/s, km/jam, mph, knot).' : 'Convert vehicle speeds, wind, & nautical speeds (m/s, km/h, mph, knot).',
+      icon: <Zap className="w-4 h-4 text-yellow-500" />,
+    },
+    {
+      id: 'digital',
+      name: language === 'id' ? 'Data Digital & Memori' : 'Digital Data & Storage',
+      desc: language === 'id' ? 'Konversi ukuran file & kuota internet (bit, Byte, KB, MB, GB, TB, KiB, MiB).' : 'Convert file sizes & internet bandwidth (bit, B, KB, MB, GB, TB, KiB, MiB).',
+      icon: <Cpu className="w-4 h-4 text-blue-500" />,
+    },
+    {
+      id: 'energy',
+      name: language === 'id' ? 'Energi & Kalori' : 'Energy & Calories',
+      desc: language === 'id' ? 'Konversi nilai gizi makanan & listrik (Joule, kJ, kalori/cal, Wh, kWh).' : 'Convert food nutrition calories & electrical work (Joule, kJ, cal, Wh, kWh).',
+      icon: <Flame className="w-4 h-4 text-orange-500" />,
+    },
+    {
+      id: 'power',
+      name: language === 'id' ? 'Daya & Beban Listrik' : 'Power & Wattage',
+      desc: language === 'id' ? 'Perhitungan daya mesin & alat elektronik (Watt, kW, Horsepower/HP).' : 'Calculate appliance wattage & engine horsepower (W, kW, HP).',
+      icon: <Activity className="w-4 h-4 text-red-500" />,
+    },
+    {
+      id: 'pressure',
+      name: language === 'id' ? 'Tekanan & Fluida' : 'Pressure & Fluids',
+      desc: language === 'id' ? 'Konversi tekanan ban kendaraan & cuaca (Pascal, bar, atm, psi).' : 'Convert tire inflation pressure & barometric weather (Pa, bar, atm, psi).',
+      icon: <Gauge className="w-4 h-4 text-teal-500" />,
+    },
+    {
+      id: 'angle',
+      name: language === 'id' ? 'Sudut & Trigonometri' : 'Angle & Geometry',
+      desc: language === 'id' ? 'Konversi bidang geometri & kompas navigasi (Derajat/°, Radian/rad, Gradian).' : 'Convert geometry angles & navigation headings (Degrees/°, Radians/rad, Grad).',
+      icon: <Compass className="w-4 h-4 text-purple-500" />,
+    },
+    {
+      id: 'frequency',
+      name: language === 'id' ? 'Frekuensi & Gelombang' : 'Frequency & Signal',
+      desc: language === 'id' ? 'Konversi frekuensi sinyal & prosesor (Hz, kHz, MHz, GHz).' : 'Convert signal frequencies & processor clocks (Hz, kHz, MHz, GHz).',
+      icon: <Radio className="w-4 h-4 text-pink-500" />,
+    },
+    {
+      id: 'fuel',
+      name: language === 'id' ? 'Bahan Bakar & Konsumsi' : 'Fuel Consumption',
+      desc: language === 'id' ? 'Perhitungan efisiensi bahan bakar kendaraan (km/L, L/100km, mpg).' : 'Calculate vehicle fuel mileage efficiency (km/L, L/100km, mpg).',
+      icon: <Droplet className="w-4 h-4 text-sky-500" />,
+    },
+  ];
 
   return (
     <div
@@ -174,7 +275,52 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({
           </p>
 
           <div className="space-y-2">
-            {/* Guide 1: Default vs Complete Modes */}
+            {/* Guide 1: Kegunaan & Keunggulan Utama Aplikasi Kita (NO 1 BARU) */}
+            <div className="rounded-2xl border border-slate-200 dark:border-slate-800 overflow-hidden">
+              <button
+                type="button"
+                onClick={() => toggleGuide('purpose')}
+                className="w-full p-3.5 bg-slate-100/80 dark:bg-slate-800/80 text-left font-extrabold text-xs flex items-center justify-between hover:bg-slate-200/80 dark:hover:bg-slate-700/80 transition-colors"
+              >
+                <span className="flex items-center gap-2">
+                  <Info className="w-4 h-4 text-indigo-600 dark:text-indigo-400" />
+                  {language === 'id' ? '1. Kegunaan & Manfaat Utama Aplikasi Kita' : '1. Core Purpose & Key Benefits of Our App'}
+                </span>
+                {openGuideSection === 'purpose' ? <ChevronDown className="w-4 h-4" /> : <ChevronRight className="w-4 h-4" />}
+              </button>
+
+              {openGuideSection === 'purpose' && (
+                <div className="p-3.5 bg-white dark:bg-slate-900/90 text-xs space-y-2.5 text-slate-600 dark:text-slate-300 font-medium border-t border-slate-200 dark:border-slate-800">
+                  <p className="leading-relaxed">
+                    {language === 'id'
+                      ? 'Aplikasi ini dibangun untuk menghadirkan alat kalkulasi & konversi satuan yang 100% bersih, cepat, aman, dan bebas dari iklan yang mengganggu.'
+                      : 'Built to provide a 100% clean, ad-free, high-precision calculation & unit conversion tool for everyday productivity.'}
+                  </p>
+                  <div className="space-y-1.5 pt-1">
+                    <div className="flex items-start gap-2">
+                      <CheckCircle2 className="w-4 h-4 text-indigo-500 shrink-0 mt-0.5" />
+                      <div>
+                        <strong className="text-slate-900 dark:text-white font-extrabold">100% Bebas Iklan & Offline:</strong> {language === 'id' ? 'Bekerja secara Local-First tanpa memerlukan koneksi internet atau backend server.' : 'Runs Local-First without needing internet connections or central servers.'}
+                      </div>
+                    </div>
+                    <div className="flex items-start gap-2">
+                      <CheckCircle2 className="w-4 h-4 text-indigo-500 shrink-0 mt-0.5" />
+                      <div>
+                        <strong className="text-slate-900 dark:text-white font-extrabold">Aman Tanpa eval():</strong> {language === 'id' ? 'Menggunakan mesin AST Parser matematika buatan sendiri untuk evaluasi ekspresi presisi tinggi.' : 'Uses a custom Shunting-Yard AST Parser for 100% secure calculation evaluation.'}
+                      </div>
+                    </div>
+                    <div className="flex items-start gap-2">
+                      <CheckCircle2 className="w-4 h-4 text-indigo-500 shrink-0 mt-0.5" />
+                      <div>
+                        <strong className="text-slate-900 dark:text-white font-extrabold">Dua Mode Ergonomis:</strong> {language === 'id' ? 'Bebas berganti antara Mode Default (aritmatika harian) dan Mode Lengkap (fungsi ilmiah 4 kolom).' : 'Easily switch between Default Mode (everyday arithmetic) and Complete Mode (4-column scientific keypad).'}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              )}
+            </div>
+
+            {/* Guide 2: Perbedaan Mode Default & Lengkap (DULU NO 1, SEKARANG DIBAWAHIN) */}
             <div className="rounded-2xl border border-slate-200 dark:border-slate-800 overflow-hidden">
               <button
                 type="button"
@@ -183,7 +329,7 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({
               >
                 <span className="flex items-center gap-2">
                   <Calculator className="w-4 h-4 text-indigo-500" />
-                  {language === 'id' ? '1. Perbedaan Mode Default & Lengkap' : '1. Default vs Complete Mode'}
+                  {language === 'id' ? '2. Perbedaan Mode Default & Lengkap' : '2. Default vs Complete Mode'}
                 </span>
                 {openGuideSection === 'modes' ? <ChevronDown className="w-4 h-4" /> : <ChevronRight className="w-4 h-4" />}
               </button>
@@ -206,7 +352,7 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({
               )}
             </div>
 
-            {/* Guide 2: 2nd Button & Inverse Functions */}
+            {/* Guide 3: 2nd Button & Inverse Functions (IKON BARU: VIOLET ZAP / SPARKLES GLOW) */}
             <div className="rounded-2xl border border-slate-200 dark:border-slate-800 overflow-hidden">
               <button
                 type="button"
@@ -214,8 +360,8 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({
                 className="w-full p-3.5 bg-slate-100/80 dark:bg-slate-800/80 text-left font-extrabold text-xs flex items-center justify-between hover:bg-slate-200/80 dark:hover:bg-slate-700/80 transition-colors"
               >
                 <span className="flex items-center gap-2">
-                  <Sparkles className="w-4 h-4 text-amber-500" />
-                  {language === 'id' ? '2. Cara Kerja Tombol 2nd & Invers' : '2. How 2nd Button & Inverse Functions Work'}
+                  <Zap className="w-4 h-4 text-violet-600 dark:text-violet-400" />
+                  {language === 'id' ? '3. Cara Kerja Tombol 2nd & Invers' : '3. How 2nd Button & Inverse Functions Work'}
                 </span>
                 {openGuideSection === 'second' ? <ChevronDown className="w-4 h-4" /> : <ChevronRight className="w-4 h-4" />}
               </button>
@@ -227,7 +373,7 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({
                       ? 'Tombol 2nd berwarna kuning mencolok. Saat ditekan aktif, fungsi matematika otomatis bertransformasi:'
                       : 'The yellow 2nd button toggles inverse mathematical functions:'}
                   </p>
-                  <ul className="list-disc pl-5 space-y-1 font-mono text-[11px] text-indigo-600 dark:text-indigo-400 font-bold">
+                  <ul className="list-disc pl-5 space-y-1 font-mono text-[11px] text-violet-600 dark:text-violet-300 font-bold">
                     <li>sin → sin⁻¹ (Arcsin)</li>
                     <li>cos → cos⁻¹ (Arccos)</li>
                     <li>tan → tan⁻¹ (Arctan)</li>
@@ -238,7 +384,7 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({
               )}
             </div>
 
-            {/* Guide 3: Calculation History & Actions */}
+            {/* Guide 4: Calculation History & Actions */}
             <div className="rounded-2xl border border-slate-200 dark:border-slate-800 overflow-hidden">
               <button
                 type="button"
@@ -247,7 +393,7 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({
               >
                 <span className="flex items-center gap-2">
                   <History className="w-4 h-4 text-indigo-500" />
-                  {language === 'id' ? '3. Menggunakan Riwayat Perhitungan' : '3. Using Calculation History'}
+                  {language === 'id' ? '4. Menggunakan Riwayat Perhitungan' : '4. Using Calculation History'}
                 </span>
                 {openGuideSection === 'history' ? <ChevronDown className="w-4 h-4" /> : <ChevronRight className="w-4 h-4" />}
               </button>
@@ -270,7 +416,7 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({
               )}
             </div>
 
-            {/* Guide 4: Unit Converter */}
+            {/* Guide 5: Unit Converter & Detailed 14 Category Breakdown (CABANG 14 KATEGORI) */}
             <div className="rounded-2xl border border-slate-200 dark:border-slate-800 overflow-hidden">
               <button
                 type="button"
@@ -279,23 +425,39 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({
               >
                 <span className="flex items-center gap-2">
                   <Layers className="w-4 h-4 text-indigo-500" />
-                  {language === 'id' ? '4. Konverter 14+ Kategori Satuan' : '4. 14+ Category Unit Converter'}
+                  {language === 'id' ? '5. Rincian & Kegunaan 14+ Kategori Satuan' : '5. Detailed 14+ Unit Categories Breakdown'}
                 </span>
                 {openGuideSection === 'converter' ? <ChevronDown className="w-4 h-4" /> : <ChevronRight className="w-4 h-4" />}
               </button>
 
               {openGuideSection === 'converter' && (
-                <div className="p-3.5 bg-white dark:bg-slate-900/90 text-xs space-y-2 text-slate-600 dark:text-slate-300 font-medium border-t border-slate-200 dark:border-slate-800">
-                  <p>
+                <div className="p-3.5 bg-white dark:bg-slate-900/90 text-xs space-y-3 text-slate-600 dark:text-slate-300 font-medium border-t border-slate-200 dark:border-slate-800">
+                  <p className="text-[11px] text-slate-500 dark:text-slate-400">
                     {language === 'id'
-                      ? 'Mencakup 14+ kategori lengkap (Panjang, Berat, Suhu, Luas, Volume, Waktu, Kecepatan, Data Digital, Energi, Daya, Tekanan, Sudut, Frekuensi, Bahan Bakar).'
-                      : 'Includes 14+ categories (Length, Weight, Temperature, Area, Volume, Time, Speed, Digital Data, Energy, Power, Pressure, Angle, Frequency, Fuel).'}
+                      ? 'Berikut adalah rincian 14 kategori konversi beserta fungsi penggunaannya:'
+                      : 'Detailed Breakdown of all 14 unit conversion categories:'}
                   </p>
-                  <p>
-                    {language === 'id'
-                      ? 'Gunakan kolom pencarian untuk menemukan satuan secara cepat, dan ketuk "Lihat Hasil dalam X Satuan" untuk melihat seluruh konversi bersamaan.'
-                      : 'Use the unit search bar for instant lookup, and tap "View Results in X Units" to see all category conversions at once.'}
-                  </p>
+
+                  <div className="grid grid-cols-1 gap-2">
+                    {categoriesDetail.map((cat, idx) => (
+                      <div
+                        key={cat.id}
+                        className="p-2.5 rounded-xl bg-slate-100/70 dark:bg-slate-800/60 border border-slate-200/60 dark:border-slate-700/60 flex items-start gap-2.5"
+                      >
+                        <div className="p-1.5 rounded-lg bg-white dark:bg-slate-900 shadow-sm shrink-0">
+                          {cat.icon}
+                        </div>
+                        <div>
+                          <div className="text-[11px] font-extrabold text-slate-900 dark:text-white">
+                            {idx + 1}. {cat.name}
+                          </div>
+                          <div className="text-[10px] text-slate-500 dark:text-slate-400 mt-0.5">
+                            {cat.desc}
+                          </div>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
                 </div>
               )}
             </div>
