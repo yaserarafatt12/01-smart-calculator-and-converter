@@ -5,6 +5,7 @@ export interface Translations {
   calculator: string;
   converter: string;
   history: string;
+  settings: string;
   
   // Calculator
   defaultMode: string;
@@ -37,6 +38,20 @@ export interface Translations {
   benchmarkLabel: string;
   swapTooltip: string;
   validNumberError: string;
+
+  // Settings & Guidebook
+  settingsTitle: string;
+  guestProfile: string;
+  guestDesc: string;
+  localFirstBadge: string;
+  appearance: string;
+  darkMode: string;
+  lightMode: string;
+  languageLabel: string;
+  guidebookTitle: string;
+  guidebookSubtitle: string;
+  aboutTitle: string;
+  versionLabel: string;
 }
 
 export const TRANSLATIONS: Record<Language, Translations> = {
@@ -44,6 +59,7 @@ export const TRANSLATIONS: Record<Language, Translations> = {
     calculator: 'Calculator',
     converter: 'Converter',
     history: 'History',
+    settings: 'Settings & Guide',
     
     defaultMode: 'Default',
     completeMode: 'Complete',
@@ -73,11 +89,25 @@ export const TRANSLATIONS: Record<Language, Translations> = {
     benchmarkLabel: 'Unit Benchmark:',
     swapTooltip: 'Swap Units',
     validNumberError: 'Please enter a valid number',
+
+    settingsTitle: 'Settings & Guidebook',
+    guestProfile: 'Guest User Profile',
+    guestDesc: '100% Private Local Session (Stored in Browser LocalStorage)',
+    localFirstBadge: 'Local-First Active',
+    appearance: 'Appearance & Theme',
+    darkMode: 'Dark Mode',
+    lightMode: 'Light Mode',
+    languageLabel: 'Application Language',
+    guidebookTitle: 'Complete User Guidebook',
+    guidebookSubtitle: 'Master all calculator modes, scientific functions, and unit converter features.',
+    aboutTitle: 'About Application',
+    versionLabel: 'Smart Calculator & Unit Converter v1.0.0',
   },
   id: {
     calculator: 'Kalkulator',
     converter: 'Konverter',
     history: 'Riwayat',
+    settings: 'Pengaturan & Panduan',
     
     defaultMode: 'Default',
     completeMode: 'Lengkap',
@@ -107,6 +137,19 @@ export const TRANSLATIONS: Record<Language, Translations> = {
     benchmarkLabel: 'Patokan Satuan:',
     swapTooltip: 'Tukar Satuan',
     validNumberError: 'Masukkan angka yang valid',
+
+    settingsTitle: 'Pengaturan & Buku Panduan',
+    guestProfile: 'Profil Pengguna Tamu',
+    guestDesc: 'Sesi Lokal 100% Pribadi (Tersimpan di LocalStorage Peramban)',
+    localFirstBadge: 'Lokal-First Aktif',
+    appearance: 'Tampilan & Tema',
+    darkMode: 'Mode Gelap',
+    lightMode: 'Mode Terang',
+    languageLabel: 'Bahasa Aplikasi',
+    guidebookTitle: 'Buku Panduan Penggunaan Lengkap',
+    guidebookSubtitle: 'Pelajari seluruh mode kalkulator, fungsi ilmiah, dan fitur konverter satuan.',
+    aboutTitle: 'Tentang Aplikasi',
+    versionLabel: 'Kalkulator & Konverter Satuan v1.0.0',
   },
 };
 

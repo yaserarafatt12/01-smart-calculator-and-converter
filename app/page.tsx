@@ -9,6 +9,7 @@ import HistoryPanel from '@/components/history/HistoryPanel';
 import CompleteConverterView from '@/components/converter/CompleteConverterView';
 import ScientificKeypad from '@/components/calculator/ScientificKeypad';
 import ResultDetailModal from '@/components/calculator/ResultDetailModal';
+import SettingsModal from '@/components/settings/SettingsModal';
 
 import { ApplicationMode, AngleMode, CalculationResult } from '@/lib/calculator/types';
 import { evaluateExpression } from '@/lib/calculator/math-parser';
@@ -36,7 +37,7 @@ export default function Home() {
   const [appMode, setAppMode] = useState<ApplicationMode>('default');
   const [angleMode, setAngleMode] = useState<AngleMode>('degree');
 
-  // Clean initial state for new users (no pre-filled placeholder calculations)
+  // Clean initial state for new users
   const [expression, setExpression] = useState<string>('');
   const [result, setResult] = useState<number | string | null>(null);
   const [calcResultObj, setCalcResultObj] = useState<CalculationResult | null>(null);
@@ -45,6 +46,7 @@ export default function Home() {
   const [history, setHistoryState] = useState<HistoryItem[]>([]);
   const [showHistoryModal, setShowHistoryModal] = useState<boolean>(false);
   const [showResultDetailModal, setShowResultDetailModal] = useState<boolean>(false);
+  const [showSettingsModal, setShowSettingsModal] = useState<boolean>(false);
 
   const [memory, setMemoryState] = useState<{ value: number; hasValue: boolean }>({
     value: 0,
@@ -270,7 +272,7 @@ export default function Home() {
             : 'sm:min-h-[720px] sm:max-w-[420px]'
         } sm:rounded-[44px] phone-chassis p-5 sm:p-6 shadow-2xl relative overflow-hidden flex flex-col justify-between transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] z-10`}
       >
-        {/* Top Header Bar with Language Switcher */}
+        {/* Top Header Bar with Language Switcher & Settings */}
         <Header
           activeTab={activeTab}
           onTabChange={setActiveTab}
@@ -281,6 +283,7 @@ export default function Home() {
           onToggleHistory={() => setShowHistoryModal((prev) => !prev)}
           language={language}
           onToggleLanguage={handleToggleLanguage}
+          onOpenSettings={() => setShowSettingsModal(true)}
         />
 
         {/* Main Content View with Buttery Smooth Cross-Fade Slide Tab Animation */}
@@ -400,6 +403,17 @@ export default function Home() {
         <footer className="mt-4 pt-2 text-center text-[11px] text-slate-500 dark:text-slate-400 font-medium border-t border-slate-200/50 dark:border-slate-800/40">
           Smart Calculator & Unit Converter &copy; 2026. Mode: {appMode === 'complete' ? t.completeMode : t.defaultMode}.
         </footer>
+
+        {/* Settings & Guidebook Modal Overlay */}
+        <SettingsModal
+          isOpen={showSettingsModal}
+          onClose={() => setShowSettingsModal(false)}
+          theme={theme}
+          onToggleTheme={handleToggleTheme}
+          language={language}
+          onToggleLanguage={handleToggleLanguage}
+          historyCount={history.length}
+        />
 
         {/* History Modal Overlay */}
         {showHistoryModal && (

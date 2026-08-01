@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import { History, Sun, Moon, ArrowLeftRight, Calculator, Globe } from 'lucide-react';
+import { History, Settings, ArrowLeftRight, Calculator, Globe } from 'lucide-react';
 import { ApplicationMode } from '@/lib/calculator/types';
 import { Language, TRANSLATIONS } from '@/lib/i18n/translations';
 
@@ -17,18 +17,17 @@ interface HeaderProps {
   onToggleHistory: () => void;
   language: Language;
   onToggleLanguage: () => void;
+  onOpenSettings: () => void;
 }
 
 export const Header: React.FC<HeaderProps> = ({
   activeTab,
   onTabChange,
-  theme,
-  onToggleTheme,
   onToggleHistory,
   language,
   onToggleLanguage,
+  onOpenSettings,
 }) => {
-  const isDark = theme === 'dark';
   const t = TRANSLATIONS[language];
 
   return (
@@ -63,7 +62,7 @@ export const Header: React.FC<HeaderProps> = ({
         </button>
       </div>
 
-      {/* Top Right: Language, History & Theme */}
+      {/* Top Right: Language, History & Settings Gear Button */}
       <div className="flex items-center gap-1.5 shrink-0">
         {/* Language Switcher Button */}
         <button
@@ -76,6 +75,7 @@ export const Header: React.FC<HeaderProps> = ({
           <span>{language.toUpperCase()}</span>
         </button>
 
+        {/* History Button */}
         <button
           type="button"
           onClick={onToggleHistory}
@@ -85,13 +85,14 @@ export const Header: React.FC<HeaderProps> = ({
           <History strokeWidth={2.5} className="w-4 h-4" />
         </button>
 
+        {/* Settings & Guidebook Gear Button */}
         <button
           type="button"
-          onClick={onToggleTheme}
-          className="p-2 rounded-2xl bg-amber-500/10 dark:bg-amber-500/20 text-amber-600 dark:text-amber-400 hover:bg-amber-500 hover:text-white border border-amber-500/30 transition-all duration-200 btn-press-effect"
-          title={isDark ? 'Light Mode' : 'Dark Mode'}
+          onClick={onOpenSettings}
+          className="p-2 rounded-2xl bg-indigo-500/10 dark:bg-indigo-500/20 text-indigo-600 dark:text-indigo-400 hover:bg-indigo-600 hover:text-white border border-indigo-500/30 transition-all duration-200 btn-press-effect"
+          title={t.settings}
         >
-          {isDark ? <Sun strokeWidth={2.5} className="w-4 h-4 text-amber-400" /> : <Moon strokeWidth={2.5} className="w-4 h-4" />}
+          <Settings strokeWidth={2.5} className="w-4 h-4" />
         </button>
       </div>
     </div>
