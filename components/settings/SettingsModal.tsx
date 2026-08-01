@@ -88,7 +88,6 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({
         setDeferredPrompt(null);
       }
     } else {
-      // Show iOS / Android fallback instructions
       setShowIOSInstructions(true);
     }
   };
@@ -189,19 +188,19 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({
   return (
     <div
       onClick={onClose}
-      className="fixed inset-0 z-[100] bg-black/60 backdrop-blur-md flex items-center justify-center p-4 animate-in fade-in duration-200 cursor-pointer font-sans"
+      className="fixed inset-0 z-[100] bg-black/75 backdrop-blur-lg flex items-center justify-center p-4 animate-in fade-in duration-200 cursor-pointer font-sans"
     >
       <div
         onClick={(e) => e.stopPropagation()}
-        className="w-full max-w-lg max-h-[85vh] bg-white dark:bg-[#121519] backdrop-blur-2xl rounded-[32px] border border-slate-200 dark:border-slate-700/80 shadow-2xl overflow-y-auto p-5 sm:p-6 space-y-5 animate-in zoom-in-95 duration-200 cursor-default text-slate-900 dark:text-white"
+        className="w-full max-w-lg max-h-[85vh] bg-[#f1f5f9] dark:bg-[#11151c] backdrop-blur-2xl rounded-[32px] border border-slate-300/80 dark:border-slate-800 shadow-2xl overflow-y-auto p-5 sm:p-6 space-y-4 animate-in zoom-in-95 duration-200 cursor-default text-slate-900 dark:text-white"
       >
         {/* Header Title Bar */}
-        <div className="flex items-center justify-between pb-3 border-b border-slate-200/80 dark:border-slate-800/80">
+        <div className="flex items-center justify-between pb-3 border-b border-slate-300/80 dark:border-slate-800">
           <div>
-            <h2 className="text-base sm:text-lg font-extrabold tracking-tight">
+            <h2 className="text-base sm:text-lg font-extrabold tracking-tight text-slate-900 dark:text-white">
               {t.settingsTitle}
             </h2>
-            <p className="text-[11px] text-slate-500 dark:text-slate-400 font-medium">
+            <p className="text-[11px] text-slate-600 dark:text-slate-400 font-medium">
               {language === 'id' ? 'Kelola sesi, tampilan, dan panduan fitur' : 'Manage session, theme, and user guide'}
             </p>
           </div>
@@ -209,14 +208,14 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({
           <button
             type="button"
             onClick={onClose}
-            className="p-2 rounded-xl text-slate-400 hover:text-slate-900 dark:hover:text-white bg-slate-100 dark:bg-slate-800 transition-colors btn-press-effect"
+            className="p-2 rounded-xl text-slate-500 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white bg-slate-200/80 dark:bg-slate-800 transition-colors btn-press-effect"
           >
             <X strokeWidth={2.5} className="w-5 h-5" />
           </button>
         </div>
 
         {/* SECTION 1: Install App (PWA) Banner */}
-        <div className="p-4 rounded-2xl bg-gradient-to-r from-indigo-600 via-indigo-500 to-violet-600 text-white shadow-lg shadow-indigo-500/30 flex items-center justify-between gap-3">
+        <div className="p-4 rounded-2xl bg-gradient-to-r from-indigo-600 via-indigo-500 to-violet-600 text-white shadow-md flex items-center justify-between gap-3">
           <div className="flex items-center gap-3">
             <div className="p-2.5 rounded-2xl bg-white/20 backdrop-blur-md shrink-0">
               <Smartphone className="w-6 h-6 text-white" />
@@ -247,7 +246,7 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({
 
         {/* iOS / Fallback Installation Instructions Modal Box */}
         {showIOSInstructions && !isStandalone && (
-          <div className="p-4 rounded-2xl bg-slate-100 dark:bg-slate-800/90 border border-slate-300 dark:border-slate-700/80 space-y-2 text-xs text-slate-700 dark:text-slate-200 animate-in fade-in duration-200">
+          <div className="p-4 rounded-2xl bg-slate-200/90 dark:bg-slate-800/90 border border-slate-300 dark:border-slate-700/80 space-y-2 text-xs text-slate-800 dark:text-slate-200 animate-in fade-in duration-200">
             <div className="flex items-center justify-between font-extrabold text-slate-900 dark:text-white">
               <span className="flex items-center gap-1.5">
                 <Share2 className="w-4 h-4 text-indigo-500" />
@@ -282,22 +281,22 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({
         )}
 
         {/* SECTION 2: Clean Guest Profile Card */}
-        <div className="p-3.5 rounded-2xl bg-slate-100 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700/60 flex items-center justify-between">
+        <div className="p-3.5 rounded-2xl bg-slate-200/80 dark:bg-slate-800/60 border border-slate-300/80 dark:border-slate-700/60 flex items-center justify-between">
           <div className="flex items-center gap-3">
             <div className="w-9 h-9 rounded-2xl bg-indigo-600 text-white flex items-center justify-center shadow-md font-extrabold text-sm">
               <UserCheck strokeWidth={2.5} className="w-4 h-4" />
             </div>
             <div>
-              <div className="text-xs sm:text-sm font-extrabold tracking-tight flex items-center gap-1.5">
+              <div className="text-xs sm:text-sm font-extrabold tracking-tight flex items-center gap-1.5 text-slate-900 dark:text-white">
                 <span>{t.guestProfile}</span>
-                <span className="px-2 py-0.5 rounded-full bg-emerald-500/20 text-emerald-600 dark:text-emerald-400 text-[10px] font-black border border-emerald-500/30">
+                <span className="px-2 py-0.5 rounded-full bg-emerald-500/20 text-emerald-700 dark:text-emerald-400 text-[10px] font-black border border-emerald-500/30">
                   Active
                 </span>
               </div>
             </div>
           </div>
 
-          <span className="text-xs font-bold text-slate-600 dark:text-slate-300">
+          <span className="text-xs font-extrabold text-slate-700 dark:text-slate-300">
             {historyCount} {language === 'id' ? 'Riwayat' : 'History'}
           </span>
         </div>
@@ -310,14 +309,14 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
             {/* Theme Toggle */}
-            <div className="p-3.5 rounded-2xl bg-slate-100 dark:bg-slate-800/90 border border-slate-200 dark:border-slate-700/80 flex items-center justify-between">
+            <div className="p-3.5 rounded-2xl bg-slate-200/80 dark:bg-slate-800/90 border border-slate-300/80 dark:border-slate-700/80 flex items-center justify-between">
               <div className="flex items-center gap-2">
                 {isDark ? (
                   <Moon strokeWidth={2.5} className="w-4 h-4 text-amber-400" />
                 ) : (
                   <Sun strokeWidth={2.5} className="w-4 h-4 text-amber-500" />
                 )}
-                <span className="text-xs font-extrabold">{t.appearance}</span>
+                <span className="text-xs font-extrabold text-slate-900 dark:text-white">{t.appearance}</span>
               </div>
 
               <button
@@ -330,10 +329,10 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({
             </div>
 
             {/* Language Toggle */}
-            <div className="p-3.5 rounded-2xl bg-slate-100 dark:bg-slate-800/90 border border-slate-200 dark:border-slate-700/80 flex items-center justify-between">
+            <div className="p-3.5 rounded-2xl bg-slate-200/80 dark:bg-slate-800/90 border border-slate-300/80 dark:border-slate-700/80 flex items-center justify-between">
               <div className="flex items-center gap-2">
                 <Globe strokeWidth={2.5} className="w-4 h-4 text-indigo-500" />
-                <span className="text-xs font-extrabold">{t.languageLabel}</span>
+                <span className="text-xs font-extrabold text-slate-900 dark:text-white">{t.languageLabel}</span>
               </div>
 
               <button
@@ -348,7 +347,7 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({
         </div>
 
         {/* SECTION 4: Complete Guidebook */}
-        <div className="space-y-3 pt-2">
+        <div className="space-y-3 pt-1">
           <div className="flex items-center gap-2">
             <BookOpen strokeWidth={2.5} className="w-4 h-4 text-indigo-600 dark:text-indigo-400" />
             <h3 className="text-xs font-extrabold uppercase tracking-widest text-indigo-600 dark:text-indigo-400">
@@ -358,11 +357,11 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({
 
           <div className="space-y-2">
             {/* Guide 1: Kegunaan Utama Aplikasi */}
-            <div className="rounded-2xl border border-slate-200 dark:border-slate-800 overflow-hidden">
+            <div className="rounded-2xl border border-slate-300/80 dark:border-slate-800 overflow-hidden">
               <button
                 type="button"
                 onClick={() => toggleGuide('purpose')}
-                className="w-full p-3.5 bg-slate-100 dark:bg-slate-800/80 text-left font-extrabold text-xs flex items-center justify-between hover:bg-slate-200 dark:hover:bg-slate-700/80 transition-colors"
+                className="w-full p-3.5 bg-slate-200/80 dark:bg-slate-800/80 text-left font-extrabold text-xs flex items-center justify-between text-slate-900 dark:text-white hover:bg-slate-300/80 dark:hover:bg-slate-700/80 transition-colors"
               >
                 <span className="flex items-center gap-2">
                   <Info className="w-4 h-4 text-indigo-600 dark:text-indigo-400" />
@@ -372,7 +371,7 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({
               </button>
 
               {openGuideSection === 'purpose' && (
-                <div className="p-3.5 bg-white dark:bg-slate-900/90 text-xs space-y-2.5 text-slate-600 dark:text-slate-300 font-medium border-t border-slate-200 dark:border-slate-800">
+                <div className="p-3.5 bg-white dark:bg-slate-900/90 text-xs space-y-2.5 text-slate-700 dark:text-slate-300 font-medium border-t border-slate-300/80 dark:border-slate-800">
                   <p className="leading-relaxed">
                     {language === 'id'
                       ? 'Aplikasi ini dibangun untuk menghadirkan alat kalkulasi & konversi satuan yang 100% bersih, cepat, aman, dan bebas dari iklan yang mengganggu.'
@@ -403,11 +402,11 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({
             </div>
 
             {/* Guide 2: Perbedaan Mode Default & Lengkap */}
-            <div className="rounded-2xl border border-slate-200 dark:border-slate-800 overflow-hidden">
+            <div className="rounded-2xl border border-slate-300/80 dark:border-slate-800 overflow-hidden">
               <button
                 type="button"
                 onClick={() => toggleGuide('modes')}
-                className="w-full p-3.5 bg-slate-100 dark:bg-slate-800/80 text-left font-extrabold text-xs flex items-center justify-between hover:bg-slate-200 dark:hover:bg-slate-700/80 transition-colors"
+                className="w-full p-3.5 bg-slate-200/80 dark:bg-slate-800/80 text-left font-extrabold text-xs flex items-center justify-between text-slate-900 dark:text-white hover:bg-slate-300/80 dark:hover:bg-slate-700/80 transition-colors"
               >
                 <span className="flex items-center gap-2">
                   <Calculator className="w-4 h-4 text-indigo-500" />
@@ -417,7 +416,7 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({
               </button>
 
               {openGuideSection === 'modes' && (
-                <div className="p-3.5 bg-white dark:bg-slate-900/90 text-xs space-y-2 text-slate-600 dark:text-slate-300 font-medium border-t border-slate-200 dark:border-slate-800">
+                <div className="p-3.5 bg-white dark:bg-slate-900/90 text-xs space-y-2 text-slate-700 dark:text-slate-300 font-medium border-t border-slate-300/80 dark:border-slate-800">
                   <div className="flex items-start gap-2">
                     <CheckCircle2 className="w-4 h-4 text-indigo-500 shrink-0 mt-0.5" />
                     <div>
@@ -435,11 +434,11 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({
             </div>
 
             {/* Guide 3: 2nd Button & Inverse Functions */}
-            <div className="rounded-2xl border border-slate-200 dark:border-slate-800 overflow-hidden">
+            <div className="rounded-2xl border border-slate-300/80 dark:border-slate-800 overflow-hidden">
               <button
                 type="button"
                 onClick={() => toggleGuide('second')}
-                className="w-full p-3.5 bg-slate-100 dark:bg-slate-800/80 text-left font-extrabold text-xs flex items-center justify-between hover:bg-slate-200 dark:hover:bg-slate-700/80 transition-colors"
+                className="w-full p-3.5 bg-slate-200/80 dark:bg-slate-800/80 text-left font-extrabold text-xs flex items-center justify-between text-slate-900 dark:text-white hover:bg-slate-300/80 dark:hover:bg-slate-700/80 transition-colors"
               >
                 <span className="flex items-center gap-2">
                   <Zap className="w-4 h-4 text-violet-600 dark:text-violet-400" />
@@ -449,7 +448,7 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({
               </button>
 
               {openGuideSection === 'second' && (
-                <div className="p-3.5 bg-white dark:bg-slate-900/90 text-xs space-y-2 text-slate-600 dark:text-slate-300 font-medium border-t border-slate-200 dark:border-slate-800">
+                <div className="p-3.5 bg-white dark:bg-slate-900/90 text-xs space-y-2 text-slate-700 dark:text-slate-300 font-medium border-t border-slate-300/80 dark:border-slate-800">
                   <p>
                     {language === 'id'
                       ? 'Tombol 2nd berwarna kuning mencolok. Saat ditekan aktif, fungsi matematika otomatis bertransformasi:'
@@ -467,11 +466,11 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({
             </div>
 
             {/* Guide 4: Calculation History & Actions */}
-            <div className="rounded-2xl border border-slate-200 dark:border-slate-800 overflow-hidden">
+            <div className="rounded-2xl border border-slate-300/80 dark:border-slate-800 overflow-hidden">
               <button
                 type="button"
                 onClick={() => toggleGuide('history')}
-                className="w-full p-3.5 bg-slate-100 dark:bg-slate-800/80 text-left font-extrabold text-xs flex items-center justify-between hover:bg-slate-200 dark:hover:bg-slate-700/80 transition-colors"
+                className="w-full p-3.5 bg-slate-200/80 dark:bg-slate-800/80 text-left font-extrabold text-xs flex items-center justify-between text-slate-900 dark:text-white hover:bg-slate-300/80 dark:hover:bg-slate-700/80 transition-colors"
               >
                 <span className="flex items-center gap-2">
                   <History className="w-4 h-4 text-indigo-500" />
@@ -481,7 +480,7 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({
               </button>
 
               {openGuideSection === 'history' && (
-                <div className="p-3.5 bg-white dark:bg-slate-900/90 text-xs space-y-2 text-slate-600 dark:text-slate-300 font-medium border-t border-slate-200 dark:border-slate-800">
+                <div className="p-3.5 bg-white dark:bg-slate-900/90 text-xs space-y-2 text-slate-700 dark:text-slate-300 font-medium border-t border-slate-300/80 dark:border-slate-800">
                   <div className="flex items-start gap-2">
                     <CheckCircle2 className="w-4 h-4 text-indigo-500 shrink-0 mt-0.5" />
                     <div>
@@ -499,11 +498,11 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({
             </div>
 
             {/* Guide 5: Unit Converter & Detailed 14 Category Breakdown */}
-            <div className="rounded-2xl border border-slate-200 dark:border-slate-800 overflow-hidden">
+            <div className="rounded-2xl border border-slate-300/80 dark:border-slate-800 overflow-hidden">
               <button
                 type="button"
                 onClick={() => toggleGuide('converter')}
-                className="w-full p-3.5 bg-slate-100 dark:bg-slate-800/80 text-left font-extrabold text-xs flex items-center justify-between hover:bg-slate-200 dark:hover:bg-slate-700/80 transition-colors"
+                className="w-full p-3.5 bg-slate-200/80 dark:bg-slate-800/80 text-left font-extrabold text-xs flex items-center justify-between text-slate-900 dark:text-white hover:bg-slate-300/80 dark:hover:bg-slate-700/80 transition-colors"
               >
                 <span className="flex items-center gap-2">
                   <Layers className="w-4 h-4 text-indigo-500" />
@@ -513,12 +512,12 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({
               </button>
 
               {openGuideSection === 'converter' && (
-                <div className="p-3.5 bg-white dark:bg-slate-900/90 text-xs space-y-3 text-slate-600 dark:text-slate-300 font-medium border-t border-slate-200 dark:border-slate-800">
+                <div className="p-3.5 bg-white dark:bg-slate-900/90 text-xs space-y-3 text-slate-700 dark:text-slate-300 font-medium border-t border-slate-300/80 dark:border-slate-800">
                   <div className="grid grid-cols-1 gap-2">
                     {categoriesDetail.map((cat, idx) => (
                       <div
                         key={cat.id}
-                        className="p-2.5 rounded-xl bg-slate-100/70 dark:bg-slate-800/60 border border-slate-200/60 dark:border-slate-700/60 flex items-start gap-2.5"
+                        className="p-2.5 rounded-xl bg-slate-100/90 dark:bg-slate-800/60 border border-slate-300/70 dark:border-slate-700/60 flex items-start gap-2.5"
                       >
                         <div className="p-1.5 rounded-lg bg-white dark:bg-slate-900 shadow-sm shrink-0">
                           {cat.icon}
@@ -527,7 +526,7 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({
                           <div className="text-[11px] font-extrabold text-slate-900 dark:text-white">
                             {idx + 1}. {cat.name}
                           </div>
-                          <div className="text-[10px] text-slate-500 dark:text-slate-400 mt-0.5">
+                          <div className="text-[10px] text-slate-600 dark:text-slate-400 mt-0.5">
                             {cat.desc}
                           </div>
                         </div>
@@ -541,7 +540,7 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({
         </div>
 
         {/* SECTION 5: About & License Footer */}
-        <div className="pt-3 border-t border-slate-200/80 dark:border-slate-800/80 text-center text-xs font-medium text-slate-500 dark:text-slate-400 space-y-1">
+        <div className="pt-3 border-t border-slate-300/80 dark:border-slate-800 text-center text-xs font-medium text-slate-600 dark:text-slate-400 space-y-1">
           <div className="font-extrabold text-slate-900 dark:text-white">
             {t.versionLabel}
           </div>
