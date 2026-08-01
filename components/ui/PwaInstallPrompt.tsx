@@ -36,10 +36,10 @@ export const PwaInstallPrompt: React.FC<PwaInstallPromptProps> = ({ language = '
 
       window.addEventListener('beforeinstallprompt', handleBeforeInstallPrompt);
 
-      // Show prompt banner automatically after 3 seconds
+      // Show prompt banner automatically after 20 seconds of comfortable usage
       const timer = setTimeout(() => {
         setShowPrompt(true);
-      }, 3000);
+      }, 20000);
 
       return () => {
         window.removeEventListener('beforeinstallprompt', handleBeforeInstallPrompt);
