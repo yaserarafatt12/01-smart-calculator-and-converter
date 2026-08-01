@@ -1,0 +1,69 @@
+# ==============================================================================
+# ATURAN WAJIB (DILARANG KERAS MEMASUKKAN KE DALAM REPOSITORI):
+# 1. Kata sandi
+# 2. Kunci layanan / API keys
+# 3. Data pengguna
+# 4. Berkas konfigurasi rahasia
+# 5. Riwayat percakapan pribadi
+# ==============================================================================
+
+# 1 & 2 & 4. Berkas Konfigurasi Rahasia, Kata Sandi, dan Kunci Layanan / API Keys
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+*.pem
+*.key
+*.cert
+*.pfx
+secrets/
+credentials/
+config/secrets.*
+
+# 3. Data Pengguna
+user-data/
+data/users/
+downloads/
+uploads/user/
+
+# 5. Riwayat Percakapan Pribadi & Log
+chats/
+chat-history/
+conversations/
+logs/chats/
+*.log
+
+# Ketergantungan (Dependencies)
+node_modules/
+/.pnp
+.pnp.js
+
+# Pengujian & Cakupan Kode
+coverage/
+.nyc_output/
+playwright-report/
+test-results/
+
+# Berkas Hasil Build
+/dist
+/build
+/.next/
+/out/
+/bin/
+/obj/
+
+# Berkas Editor & IDE
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+.idea/
+*.swp
+*.swo
+*.tmp
+
+# Berkas Sistem Operasi
+.DS_Store
+Thumbs.db
+desktop.ini
