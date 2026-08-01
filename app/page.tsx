@@ -36,8 +36,9 @@ export default function Home() {
   const [appMode, setAppMode] = useState<ApplicationMode>('default');
   const [angleMode, setAngleMode] = useState<AngleMode>('degree');
 
-  const [expression, setExpression] = useState<string>('4900 + 15910');
-  const [result, setResult] = useState<number | string | null>(20810);
+  // Clean initial state for new users (no pre-filled placeholder calculations)
+  const [expression, setExpression] = useState<string>('');
+  const [result, setResult] = useState<number | string | null>(null);
   const [calcResultObj, setCalcResultObj] = useState<CalculationResult | null>(null);
 
   const [formattedError, setFormattedError] = useState<FormattedError | null>(null);
