@@ -180,7 +180,6 @@ export const UnitConverter: React.FC = () => {
                   setCategory(cat.id);
                   setOpenFromSelect(false);
                   setOpenToSelect(false);
-                  // Keep expanded list open on selection
                 }}
                 className={`p-3 rounded-2xl text-left transition-all duration-200 btn-press-effect flex flex-col justify-between ${
                   isSelected
@@ -225,10 +224,10 @@ export const UnitConverter: React.FC = () => {
       </div>
 
       {/* Prominent Visual Separator Line */}
-      <div className="w-full my-4 border-t border-slate-200/60 dark:border-slate-800/60" />
+      <div className="w-full my-6 sm:my-8 border-t border-slate-200/60 dark:border-slate-800/60" />
 
-      {/* Main Input/Output Conversion Block */}
-      <div className="space-y-3.5 pt-1">
+      {/* Main Input/Output Conversion Block Pushed Down Gracefully */}
+      <div className="space-y-4 pt-4 sm:pt-6">
         {/* From Value & Custom Dropdown */}
         <div className="space-y-1 relative z-30" ref={fromRef}>
           <label className="block text-xs font-extrabold text-slate-800 dark:text-slate-200 tracking-tight">
