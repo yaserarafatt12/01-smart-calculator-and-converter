@@ -1,4 +1,4 @@
-# Kalkulator Pintar dan Konverter Satuan (Smart Calculator & Unit Converter) v1.0.0
+# Smart Calculator & Unit Converter v1.0.0
 
 > Aplikasi web kalkulator ilmiah presisi tinggi dan konverter 14+ kategori satuan serbaguna berbasis *Local-First* tanpa `eval()`. Produk inti selesai & siap digunakan.
 
@@ -6,6 +6,8 @@
 
 ## 📌 Status Proyek: `Kalkulator & Konverter Satuan v1.0.0 (Release Frozen)`
 
+- 🌐 **Live Demo:** [https://smart-calculator-and-converter.vercel.app](https://smart-calculator-and-converter.vercel.app)
+- 💻 **GitHub Repository:** [https://github.com/yaserarafatt12/01-smart-calculator-and-converter](https://github.com/yaserarafatt12/01-smart-calculator-and-converter)
 - ✅ **Produk Inti Selesai (100% Core Complete)**
 - ✅ **Vitest Unit Testing:** 84/84 Test Lulus (100%)
 - ✅ **Responsif & Aksesibel:** Diuji pada layar 320px, 360px, 390px, 768px+
@@ -36,15 +38,11 @@ Di era digital saat ini, pengguna kerap menemukan kendala ketika menggunakan ala
 
 ---
 
-## Demonstrasi & Tangkapan Layar
+## Demonstrasi & Dokumentasi
 
-* **Versi Daring (Live Demo):** [https://smart-calculator-converter.vercel.app](https://smart-calculator-converter.vercel.app)
-* **Dokumentasi PRD & Arsitektur:** [`docs/product-requirements.md`](docs/product-requirements.md) & [`docs/architecture.md`](docs/architecture.md)
-
-### Tangkapan Layar Produk:
-1. **Mode Default (Ukuran Besar & Leg) & Mode Lengkap (4 Kolom Ilmiah)**
-2. **Konverter Satuan (14+ Kategori & Drawer Hasil)**
-3. **Bottom Sheet Riwayat Perhitungan & Modal Detail Presisi**
+* 🌐 **Versi Daring (Live Demo):** [https://smart-calculator-and-converter.vercel.app](https://smart-calculator-and-converter.vercel.app)
+* 📑 **Dokumentasi PRD & Arsitektur:** [`docs/product-requirements.md`](docs/product-requirements.md) & [`docs/architecture.md`](docs/architecture.md)
+* 🚀 **Launch Assets & Studi Kasus:** [`docs/launch-assets/case-study.md`](docs/launch-assets/case-study.md) & [`docs/launch-assets/social-media-captions.md`](docs/launch-assets/social-media-captions.md)
 
 ---
 
@@ -58,6 +56,7 @@ Di era digital saat ini, pengguna kerap menemukan kendala ketika menggunakan ala
 - [x] **Manajemen Memori & Riwayat:** Tombol `MC`, `MR`, `Ans` serta laci riwayat kalkulasi interaktif yang dilengkapi dialog konfirmasi saat menghapus.
 - [x] **Safe AST Parser:** Penanganan ekspresi tanpa `eval()` dengan proteksi pembagian dengan nol dan sorotan kesalahan sintaks (*error highlight*).
 - [x] **Tema Responsif & Aksesibilitas:** Dukungan penuh Mode Gelap/Terang, layout serba-responsif dari 320px hingga desktop.
+- [x] **Multi-Bahasa (i18n):** Deteksi otomatis peramban (English / Indonesian) dengan sakelar `EN | ID`.
 
 ---
 
@@ -77,27 +76,6 @@ npm test
 - `tests/unit/advanced-converter.test.ts`: **10/10 Passed**
 - `tests/unit/history-storage.test.ts`: **4/4 Passed**
 - **Total: 84/84 Lulus (100%)**
-
----
-
-## Menjalankan Secara Lokal
-
-1. **Salin repositori:**
-   ```bash
-   git clone https://github.com/yaserarafat12/01-smart-calculator-and-converter.git
-   cd 01-smart-calculator-and-converter
-   ```
-
-2. **Pasang ketergantungan (dependencies):**
-   ```bash
-   npm install
-   ```
-
-3. **Jalankan server pengembangan:**
-   ```bash
-   npm run dev
-   ```
-   Buka [http://localhost:3000](http://localhost:3000) pada peramban Anda.
 
 ---
 
