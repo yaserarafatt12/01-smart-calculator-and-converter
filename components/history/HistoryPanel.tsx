@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
-import { Trash2, ArrowUpRight, Clock, ChevronRight, AlertTriangle } from 'lucide-react';
+import { Trash2, ArrowUpRight, Plus, Clock, AlertTriangle } from 'lucide-react';
 import { HistoryItem } from '@/lib/storage/history-storage';
 import { Language, TRANSLATIONS } from '@/lib/i18n/translations';
 
@@ -161,7 +161,8 @@ export const HistoryPanel: React.FC<HistoryPanelProps> = ({
                   className="flex items-center gap-1 text-indigo-600 dark:text-indigo-400 hover:underline transition-colors"
                   title="Kembalikan seluruh rumus ini ke layar masukan kalkulator"
                 >
-                  <ArrowUpRight strokeWidth={2.5} className="w-3.5 h-3.5" /> {t.restoreFormula}
+                  <ArrowUpRight strokeWidth={2.5} className="w-3.5 h-3.5" />
+                  <span>{t.restoreFormula}</span>
                 </button>
                 <button
                   type="button"
@@ -169,7 +170,8 @@ export const HistoryPanel: React.FC<HistoryPanelProps> = ({
                   className="flex items-center gap-1 text-emerald-600 dark:text-emerald-400 hover:underline transition-colors"
                   title="Sisipkan angka hasil ini ke masukan yang sedang diketik"
                 >
-                  <ChevronRight strokeWidth={2.5} className="w-3.5 h-3.5" /> {t.insertResult}
+                  <Plus strokeWidth={2.5} className="w-3.5 h-3.5" />
+                  <span>{t.insertResult}</span>
                 </button>
               </div>
             </div>

@@ -2,13 +2,11 @@
 
 import React, { useState } from 'react';
 import {
-  Settings,
   UserCheck,
   Sun,
   Moon,
   Globe,
   BookOpen,
-  ShieldCheck,
   Zap,
   Calculator,
   Layers,
@@ -17,7 +15,6 @@ import {
   ChevronRight,
   ChevronDown,
   CheckCircle2,
-  Sparkles,
   Info,
   Ruler,
   Scale,
@@ -54,7 +51,8 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({
   onToggleLanguage,
   historyCount,
 }) => {
-  const [openGuideSection, setOpenGuideSection] = useState<string | null>('purpose');
+  // All guidebook sections closed by default
+  const [openGuideSection, setOpenGuideSection] = useState<string | null>(null);
   const t = TRANSLATIONS[language];
   const isDark = theme === 'dark';
 
@@ -158,22 +156,17 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({
     >
       <div
         onClick={(e) => e.stopPropagation()}
-        className="w-full max-w-lg max-h-[85vh] bg-white/95 dark:bg-[#121519]/95 backdrop-blur-2xl rounded-[32px] border border-white/80 dark:border-slate-700/80 shadow-2xl overflow-y-auto p-5 sm:p-6 space-y-5 animate-in zoom-in-95 duration-200 cursor-default text-slate-900 dark:text-white"
+        className="w-full max-w-lg max-h-[85vh] bg-white dark:bg-[#121519] backdrop-blur-2xl rounded-[32px] border border-slate-200 dark:border-slate-700/80 shadow-2xl overflow-y-auto p-5 sm:p-6 space-y-5 animate-in zoom-in-95 duration-200 cursor-default text-slate-900 dark:text-white"
       >
-        {/* Header Title Bar */}
+        {/* Clean Header Title Bar without double gear icon */}
         <div className="flex items-center justify-between pb-3 border-b border-slate-200/80 dark:border-slate-800/80">
-          <div className="flex items-center gap-2.5">
-            <div className="p-2 rounded-2xl bg-indigo-600 text-white shadow-md">
-              <Settings strokeWidth={2.5} className="w-5 h-5 animate-spin-slow" />
-            </div>
-            <div>
-              <h2 className="text-base sm:text-lg font-extrabold tracking-tight">
-                {t.settingsTitle}
-              </h2>
-              <p className="text-[11px] text-slate-500 dark:text-slate-400 font-medium">
-                {language === 'id' ? 'Kelola sesi, tampilan, dan panduan fitur' : 'Manage session, theme, and user guide'}
-              </p>
-            </div>
+          <div>
+            <h2 className="text-base sm:text-lg font-extrabold tracking-tight">
+              {t.settingsTitle}
+            </h2>
+            <p className="text-[11px] text-slate-500 dark:text-slate-400 font-medium">
+              {language === 'id' ? 'Kelola sesi, tampilan, dan panduan fitur' : 'Manage session, theme, and user guide'}
+            </p>
           </div>
 
           <button
@@ -185,8 +178,8 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({
           </button>
         </div>
 
-        {/* SECTION 1: Guest Profile Card */}
-        <div className="p-4 rounded-2xl bg-gradient-to-br from-indigo-500/10 via-purple-500/10 to-violet-500/10 border border-indigo-500/20 shadow-sm space-y-3">
+        {/* SECTION 1: Clean Guest Profile Card */}
+        <div className="p-4 rounded-2xl bg-indigo-500/10 dark:bg-indigo-500/15 border border-indigo-500/20 shadow-sm">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-3">
               <div className="w-10 h-10 rounded-2xl bg-indigo-600 text-white flex items-center justify-center shadow-md font-extrabold text-sm">
@@ -199,20 +192,11 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({
                     Active
                   </span>
                 </div>
-                <div className="text-[11px] text-slate-500 dark:text-slate-400 font-medium">
-                  {t.guestDesc}
-                </div>
               </div>
             </div>
-          </div>
 
-          <div className="pt-2 border-t border-indigo-500/15 flex items-center justify-between text-xs font-bold text-slate-600 dark:text-slate-300">
-            <div className="flex items-center gap-1 text-indigo-600 dark:text-indigo-400">
-              <ShieldCheck strokeWidth={2.5} className="w-4 h-4" />
-              <span>{t.localFirstBadge}</span>
-            </div>
-            <span className="text-[11px] opacity-80">
-              {historyCount} {language === 'id' ? 'Catatan Riwayat' : 'History Entries'}
+            <span className="text-xs font-bold text-slate-600 dark:text-slate-300">
+              {historyCount} {language === 'id' ? 'Riwayat' : 'History'}
             </span>
           </div>
         </div>
@@ -225,7 +209,7 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
             {/* Theme Toggle */}
-            <div className="p-3.5 rounded-2xl bg-slate-100/90 dark:bg-slate-800/90 border border-slate-200 dark:border-slate-700/80 flex items-center justify-between">
+            <div className="p-3.5 rounded-2xl bg-slate-100 dark:bg-slate-800/90 border border-slate-200 dark:border-slate-700/80 flex items-center justify-between">
               <div className="flex items-center gap-2">
                 {isDark ? (
                   <Moon strokeWidth={2.5} className="w-4 h-4 text-amber-400" />
@@ -245,7 +229,7 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({
             </div>
 
             {/* Language Toggle */}
-            <div className="p-3.5 rounded-2xl bg-slate-100/90 dark:bg-slate-800/90 border border-slate-200 dark:border-slate-700/80 flex items-center justify-between">
+            <div className="p-3.5 rounded-2xl bg-slate-100 dark:bg-slate-800/90 border border-slate-200 dark:border-slate-700/80 flex items-center justify-between">
               <div className="flex items-center gap-2">
                 <Globe strokeWidth={2.5} className="w-4 h-4 text-indigo-500" />
                 <span className="text-xs font-extrabold">{t.languageLabel}</span>
@@ -262,7 +246,7 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({
           </div>
         </div>
 
-        {/* SECTION 3: Complete Guidebook (Interactive Accordion) */}
+        {/* SECTION 3: Complete Guidebook (Interactive Accordion, Closed by default) */}
         <div className="space-y-3 pt-2">
           <div className="flex items-center gap-2">
             <BookOpen strokeWidth={2.5} className="w-4 h-4 text-indigo-600 dark:text-indigo-400" />
@@ -270,17 +254,14 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({
               {t.guidebookTitle}
             </h3>
           </div>
-          <p className="text-xs text-slate-500 dark:text-slate-400 font-medium">
-            {t.guidebookSubtitle}
-          </p>
 
           <div className="space-y-2">
-            {/* Guide 1: Kegunaan & Keunggulan Utama Aplikasi Kita (NO 1 BARU) */}
+            {/* Guide 1: Kegunaan Utama Aplikasi */}
             <div className="rounded-2xl border border-slate-200 dark:border-slate-800 overflow-hidden">
               <button
                 type="button"
                 onClick={() => toggleGuide('purpose')}
-                className="w-full p-3.5 bg-slate-100/80 dark:bg-slate-800/80 text-left font-extrabold text-xs flex items-center justify-between hover:bg-slate-200/80 dark:hover:bg-slate-700/80 transition-colors"
+                className="w-full p-3.5 bg-slate-100 dark:bg-slate-800/80 text-left font-extrabold text-xs flex items-center justify-between hover:bg-slate-200 dark:hover:bg-slate-700/80 transition-colors"
               >
                 <span className="flex items-center gap-2">
                   <Info className="w-4 h-4 text-indigo-600 dark:text-indigo-400" />
@@ -300,7 +281,7 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({
                     <div className="flex items-start gap-2">
                       <CheckCircle2 className="w-4 h-4 text-indigo-500 shrink-0 mt-0.5" />
                       <div>
-                        <strong className="text-slate-900 dark:text-white font-extrabold">100% Bebas Iklan & Offline:</strong> {language === 'id' ? 'Bekerja secara Local-First tanpa memerlukan koneksi internet atau backend server.' : 'Runs Local-First without needing internet connections or central servers.'}
+                        <strong className="text-slate-900 dark:text-white font-extrabold">100% Bebas Iklan & Offline:</strong> {language === 'id' ? 'Bekerja secara lokal di browser tanpa membutuhkan koneksi internet atau server eksternal.' : 'Runs locally in browser without needing internet connections.'}
                       </div>
                     </div>
                     <div className="flex items-start gap-2">
@@ -320,12 +301,12 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({
               )}
             </div>
 
-            {/* Guide 2: Perbedaan Mode Default & Lengkap (DULU NO 1, SEKARANG DIBAWAHIN) */}
+            {/* Guide 2: Perbedaan Mode Default & Lengkap */}
             <div className="rounded-2xl border border-slate-200 dark:border-slate-800 overflow-hidden">
               <button
                 type="button"
                 onClick={() => toggleGuide('modes')}
-                className="w-full p-3.5 bg-slate-100/80 dark:bg-slate-800/80 text-left font-extrabold text-xs flex items-center justify-between hover:bg-slate-200/80 dark:hover:bg-slate-700/80 transition-colors"
+                className="w-full p-3.5 bg-slate-100 dark:bg-slate-800/80 text-left font-extrabold text-xs flex items-center justify-between hover:bg-slate-200 dark:hover:bg-slate-700/80 transition-colors"
               >
                 <span className="flex items-center gap-2">
                   <Calculator className="w-4 h-4 text-indigo-500" />
@@ -352,12 +333,12 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({
               )}
             </div>
 
-            {/* Guide 3: 2nd Button & Inverse Functions (IKON BARU: VIOLET ZAP / SPARKLES GLOW) */}
+            {/* Guide 3: 2nd Button & Inverse Functions */}
             <div className="rounded-2xl border border-slate-200 dark:border-slate-800 overflow-hidden">
               <button
                 type="button"
                 onClick={() => toggleGuide('second')}
-                className="w-full p-3.5 bg-slate-100/80 dark:bg-slate-800/80 text-left font-extrabold text-xs flex items-center justify-between hover:bg-slate-200/80 dark:hover:bg-slate-700/80 transition-colors"
+                className="w-full p-3.5 bg-slate-100 dark:bg-slate-800/80 text-left font-extrabold text-xs flex items-center justify-between hover:bg-slate-200 dark:hover:bg-slate-700/80 transition-colors"
               >
                 <span className="flex items-center gap-2">
                   <Zap className="w-4 h-4 text-violet-600 dark:text-violet-400" />
@@ -389,7 +370,7 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({
               <button
                 type="button"
                 onClick={() => toggleGuide('history')}
-                className="w-full p-3.5 bg-slate-100/80 dark:bg-slate-800/80 text-left font-extrabold text-xs flex items-center justify-between hover:bg-slate-200/80 dark:hover:bg-slate-700/80 transition-colors"
+                className="w-full p-3.5 bg-slate-100 dark:bg-slate-800/80 text-left font-extrabold text-xs flex items-center justify-between hover:bg-slate-200 dark:hover:bg-slate-700/80 transition-colors"
               >
                 <span className="flex items-center gap-2">
                   <History className="w-4 h-4 text-indigo-500" />
@@ -403,25 +384,25 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({
                   <div className="flex items-start gap-2">
                     <CheckCircle2 className="w-4 h-4 text-indigo-500 shrink-0 mt-0.5" />
                     <div>
-                      <strong className="text-slate-900 dark:text-white font-extrabold">↗ {t.restoreFormula}:</strong> {language === 'id' ? 'Mengembalikan seluruh rumus lama ke layar kalkulator untuk dihitung atau diedit kembali.' : 'Restores the original formula string into the calculator display.'}
+                      <strong className="text-slate-900 dark:text-white font-extrabold">{t.restoreFormula}:</strong> {language === 'id' ? 'Mengembalikan seluruh rumus lama ke layar kalkulator untuk dihitung atau diedit kembali.' : 'Restores the original formula string into the calculator display.'}
                     </div>
                   </div>
                   <div className="flex items-start gap-2">
                     <CheckCircle2 className="w-4 h-4 text-emerald-500 shrink-0 mt-0.5" />
                     <div>
-                      <strong className="text-slate-900 dark:text-white font-extrabold">+ {t.insertResult}:</strong> {language === 'id' ? 'Menyisipkan angka hasil ke dalam rumus yang sedang diketik.' : 'Appends the calculated number into your ongoing expression.'}
+                      <strong className="text-slate-900 dark:text-white font-extrabold">{t.insertResult}:</strong> {language === 'id' ? 'Menyisipkan angka hasil ke dalam rumus yang sedang diketik.' : 'Appends the calculated number into your ongoing expression.'}
                     </div>
                   </div>
                 </div>
               )}
             </div>
 
-            {/* Guide 5: Unit Converter & Detailed 14 Category Breakdown (CABANG 14 KATEGORI) */}
+            {/* Guide 5: Unit Converter & Detailed 14 Category Breakdown */}
             <div className="rounded-2xl border border-slate-200 dark:border-slate-800 overflow-hidden">
               <button
                 type="button"
                 onClick={() => toggleGuide('converter')}
-                className="w-full p-3.5 bg-slate-100/80 dark:bg-slate-800/80 text-left font-extrabold text-xs flex items-center justify-between hover:bg-slate-200/80 dark:hover:bg-slate-700/80 transition-colors"
+                className="w-full p-3.5 bg-slate-100 dark:bg-slate-800/80 text-left font-extrabold text-xs flex items-center justify-between hover:bg-slate-200 dark:hover:bg-slate-700/80 transition-colors"
               >
                 <span className="flex items-center gap-2">
                   <Layers className="w-4 h-4 text-indigo-500" />
@@ -432,12 +413,6 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({
 
               {openGuideSection === 'converter' && (
                 <div className="p-3.5 bg-white dark:bg-slate-900/90 text-xs space-y-3 text-slate-600 dark:text-slate-300 font-medium border-t border-slate-200 dark:border-slate-800">
-                  <p className="text-[11px] text-slate-500 dark:text-slate-400">
-                    {language === 'id'
-                      ? 'Berikut adalah rincian 14 kategori konversi beserta fungsi penggunaannya:'
-                      : 'Detailed Breakdown of all 14 unit conversion categories:'}
-                  </p>
-
                   <div className="grid grid-cols-1 gap-2">
                     {categoriesDetail.map((cat, idx) => (
                       <div
