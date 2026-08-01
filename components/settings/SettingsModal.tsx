@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   UserCheck,
   Sun,
@@ -29,6 +29,9 @@ import {
   Compass,
   Radio,
   Droplet,
+  Download,
+  Smartphone,
+  Share2,
 } from 'lucide-react';
 import { Language, TRANSLATIONS } from '@/lib/i18n/translations';
 
@@ -51,10 +54,44 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({
   onToggleLanguage,
   historyCount,
 }) => {
-  // All guidebook sections closed by default
   const [openGuideSection, setOpenGuideSection] = useState<string | null>(null);
+  const [deferredPrompt, setDeferredPrompt] = useState<any>(null);
+  const [isStandalone, setIsStandalone] = useState<boolean>(false);
+  const [showIOSInstructions, setShowIOSInstructions] = useState<boolean>(false);
+
   const t = TRANSLATIONS[language];
   const isDark = theme === 'dark';
+
+  // Listen for PWA Install Prompt event & check standalone mode
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      const isAppStandalone =
+        window.matchMedia('(display-mode: standalone)').matches ||
+        (navigator as any).standalone === true;
+      setIsStandalone(isAppStandalone);
+
+      const handleBeforeInstallPrompt = (e: Event) => {
+        e.preventDefault();
+        setDeferredPrompt(e);
+      };
+
+      window.addEventListener('beforeinstallprompt', handleBeforeInstallPrompt);
+      return () => window.removeEventListener('beforeinstallprompt', handleBeforeInstallPrompt);
+    }
+  }, []);
+
+  const handleInstallPWA = async () => {
+    if (deferredPrompt) {
+      deferredPrompt.prompt();
+      const { outcome } = await deferredPrompt.userChoice;
+      if (outcome === 'accepted') {
+        setDeferredPrompt(null);
+      }
+    } else {
+      // Show iOS / Android fallback instructions
+      setShowIOSInstructions(true);
+    }
+  };
 
   if (!isOpen) return null;
 
@@ -158,7 +195,7 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({
         onClick={(e) => e.stopPropagation()}
         className="w-full max-w-lg max-h-[85vh] bg-white dark:bg-[#121519] backdrop-blur-2xl rounded-[32px] border border-slate-200 dark:border-slate-700/80 shadow-2xl overflow-y-auto p-5 sm:p-6 space-y-5 animate-in zoom-in-95 duration-200 cursor-default text-slate-900 dark:text-white"
       >
-        {/* Clean Header Title Bar without double gear icon */}
+        {/* Header Title Bar */}
         <div className="flex items-center justify-between pb-3 border-b border-slate-200/80 dark:border-slate-800/80">
           <div>
             <h2 className="text-base sm:text-lg font-extrabold tracking-tight">
@@ -178,30 +215,94 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({
           </button>
         </div>
 
-        {/* SECTION 1: Clean Guest Profile Card */}
-        <div className="p-4 rounded-2xl bg-indigo-500/10 dark:bg-indigo-500/15 border border-indigo-500/20 shadow-sm">
-          <div className="flex items-center justify-between">
-            <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-2xl bg-indigo-600 text-white flex items-center justify-center shadow-md font-extrabold text-sm">
-                <UserCheck strokeWidth={2.5} className="w-5 h-5" />
+        {/* SECTION 1: Install App (PWA) Banner */}
+        <div className="p-4 rounded-2xl bg-gradient-to-r from-indigo-600 via-indigo-500 to-violet-600 text-white shadow-lg shadow-indigo-500/30 flex items-center justify-between gap-3">
+          <div className="flex items-center gap-3">
+            <div className="p-2.5 rounded-2xl bg-white/20 backdrop-blur-md shrink-0">
+              <Smartphone className="w-6 h-6 text-white" />
+            </div>
+            <div>
+              <div className="text-xs sm:text-sm font-black tracking-tight">
+                {language === 'id' ? 'Pasang Aplikasi di HP' : 'Install App on Phone'}
               </div>
-              <div>
-                <div className="text-xs sm:text-sm font-extrabold tracking-tight flex items-center gap-1.5">
-                  <span>{t.guestProfile}</span>
-                  <span className="px-2 py-0.5 rounded-full bg-emerald-500/20 text-emerald-600 dark:text-emerald-400 text-[10px] font-black border border-emerald-500/30">
-                    Active
-                  </span>
-                </div>
+              <div className="text-[11px] text-indigo-100 font-medium mt-0.5">
+                {isStandalone
+                  ? (language === 'id' ? 'Aplikasi sudah terpasang di HP Anda' : 'App is installed on your device')
+                  : (language === 'id' ? 'Jadikan aplikasi mandiri tanpa peramban (Offline)' : 'Add to home screen & work 100% offline')}
               </div>
             </div>
-
-            <span className="text-xs font-bold text-slate-600 dark:text-slate-300">
-              {historyCount} {language === 'id' ? 'Riwayat' : 'History'}
-            </span>
           </div>
+
+          {!isStandalone && (
+            <button
+              type="button"
+              onClick={handleInstallPWA}
+              className="px-3.5 py-2 rounded-xl text-xs font-black bg-white text-indigo-600 hover:bg-indigo-50 transition-all btn-press-effect shrink-0 flex items-center gap-1.5 shadow-md"
+            >
+              <Download className="w-4 h-4" />
+              <span>{language === 'id' ? 'Pasang' : 'Install'}</span>
+            </button>
+          )}
         </div>
 
-        {/* SECTION 2: Appearance & Language Controls */}
+        {/* iOS / Fallback Installation Instructions Modal Box */}
+        {showIOSInstructions && !isStandalone && (
+          <div className="p-4 rounded-2xl bg-slate-100 dark:bg-slate-800/90 border border-slate-300 dark:border-slate-700/80 space-y-2 text-xs text-slate-700 dark:text-slate-200 animate-in fade-in duration-200">
+            <div className="flex items-center justify-between font-extrabold text-slate-900 dark:text-white">
+              <span className="flex items-center gap-1.5">
+                <Share2 className="w-4 h-4 text-indigo-500" />
+                {language === 'id' ? 'Cara Pasang di HP (iOS / Android):' : 'Installation Steps (iOS / Android):'}
+              </span>
+              <button
+                type="button"
+                onClick={() => setShowIOSInstructions(false)}
+                className="text-slate-400 hover:text-slate-900 dark:hover:text-white"
+              >
+                ✕
+              </button>
+            </div>
+            <ol className="list-decimal pl-5 space-y-1 font-medium text-[11px]">
+              <li>
+                {language === 'id'
+                  ? 'Ketuk tombol Bagikan (Share) di menu bawah peramban Anda.'
+                  : 'Tap the Share button in your mobile browser bottom menu.'}
+              </li>
+              <li>
+                {language === 'id'
+                  ? 'Pilih menu "Tambah ke Layar Utama" ("Add to Home Screen").'
+                  : 'Select "Add to Home Screen" from the menu options.'}
+              </li>
+              <li>
+                {language === 'id'
+                  ? 'Aplikasi akan muncul sebagai ikon mandiri di layar HP Anda!'
+                  : 'The app icon will instantly appear on your mobile home screen!'}
+              </li>
+            </ol>
+          </div>
+        )}
+
+        {/* SECTION 2: Clean Guest Profile Card */}
+        <div className="p-3.5 rounded-2xl bg-slate-100 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700/60 flex items-center justify-between">
+          <div className="flex items-center gap-3">
+            <div className="w-9 h-9 rounded-2xl bg-indigo-600 text-white flex items-center justify-center shadow-md font-extrabold text-sm">
+              <UserCheck strokeWidth={2.5} className="w-4 h-4" />
+            </div>
+            <div>
+              <div className="text-xs sm:text-sm font-extrabold tracking-tight flex items-center gap-1.5">
+                <span>{t.guestProfile}</span>
+                <span className="px-2 py-0.5 rounded-full bg-emerald-500/20 text-emerald-600 dark:text-emerald-400 text-[10px] font-black border border-emerald-500/30">
+                  Active
+                </span>
+              </div>
+            </div>
+          </div>
+
+          <span className="text-xs font-bold text-slate-600 dark:text-slate-300">
+            {historyCount} {language === 'id' ? 'Riwayat' : 'History'}
+          </span>
+        </div>
+
+        {/* SECTION 3: Appearance & Language Controls */}
         <div className="space-y-3">
           <h3 className="text-xs font-extrabold uppercase tracking-widest text-indigo-600 dark:text-indigo-400">
             {language === 'id' ? 'Pengaturan Aplikasi' : 'Application Settings'}
@@ -246,7 +347,7 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({
           </div>
         </div>
 
-        {/* SECTION 3: Complete Guidebook (Interactive Accordion, Closed by default) */}
+        {/* SECTION 4: Complete Guidebook */}
         <div className="space-y-3 pt-2">
           <div className="flex items-center gap-2">
             <BookOpen strokeWidth={2.5} className="w-4 h-4 text-indigo-600 dark:text-indigo-400" />
@@ -439,7 +540,7 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({
           </div>
         </div>
 
-        {/* SECTION 4: About & License Footer */}
+        {/* SECTION 5: About & License Footer */}
         <div className="pt-3 border-t border-slate-200/80 dark:border-slate-800/80 text-center text-xs font-medium text-slate-500 dark:text-slate-400 space-y-1">
           <div className="font-extrabold text-slate-900 dark:text-white">
             {t.versionLabel}

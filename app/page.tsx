@@ -10,6 +10,7 @@ import CompleteConverterView from '@/components/converter/CompleteConverterView'
 import ScientificKeypad from '@/components/calculator/ScientificKeypad';
 import ResultDetailModal from '@/components/calculator/ResultDetailModal';
 import SettingsModal from '@/components/settings/SettingsModal';
+import PwaInstallPrompt from '@/components/ui/PwaInstallPrompt';
 
 import { ApplicationMode, AngleMode, CalculationResult } from '@/lib/calculator/types';
 import { evaluateExpression } from '@/lib/calculator/math-parser';
@@ -457,6 +458,9 @@ export default function Home() {
           onUseAsInput={(val) => setExpression((prev) => prev + val)}
         />
       </div>
+
+      {/* Automatic PWA Install Banner Popup */}
+      <PwaInstallPrompt language={language} />
     </main>
   );
 }
