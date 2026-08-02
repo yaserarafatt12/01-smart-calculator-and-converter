@@ -2,12 +2,15 @@
 
 import React, { useState } from 'react';
 import { Copy, Check, AlertCircle } from 'lucide-react';
+import { Language, Translations } from '@/lib/i18n/translations';
 
 interface DisplayProps {
   expression: string;
   result: string | number | null;
   errorIndex?: number | null;
   isError?: boolean;
+  language?: Language;
+  t?: Translations;
 }
 
 export const Display: React.FC<DisplayProps> = ({
@@ -43,7 +46,7 @@ export const Display: React.FC<DisplayProps> = ({
           <span
             data-testid="error-highlight"
             className="inline-block bg-rose-500/20 text-rose-600 dark:text-rose-400 font-bold px-1.5 py-0.5 rounded-md ring-2 ring-rose-500 animate-pulse"
-            title={`Kesalahan pada karakter '${errChar}' (indeks ${errorIndex})`}
+            title={`Error on index ${errorIndex}: '${errChar}'`}
           >
             {errChar}
           </span>
@@ -64,7 +67,7 @@ export const Display: React.FC<DisplayProps> = ({
       {isError && (
         <div className="flex items-center justify-start text-xs mb-1">
           <span className="inline-flex items-center gap-1 text-[11px] font-bold px-2.5 py-0.5 rounded-full bg-rose-500/10 text-rose-600 dark:bg-rose-950/80 dark:text-rose-400 border border-rose-500/20">
-            <AlertCircle strokeWidth={2.5} className="w-3 h-3" /> Error Sintaks
+            <AlertCircle strokeWidth={2.5} className="w-3 h-3" /> Syntax Error
           </span>
         </div>
       )}
@@ -87,12 +90,16 @@ interface ResultCardProps {
   isError?: boolean;
   onCopyResult?: () => void;
   onClickDetail?: () => void;
+  language?: Language;
+  t?: Translations;
 }
 
 export const ResultCard: React.FC<ResultCardProps> = ({
   result,
   isError = false,
   onClickDetail,
+  language = 'en',
+  t,
 }) => {
   const [copied, setCopied] = useState(false);
 
@@ -114,14 +121,22 @@ export const ResultCard: React.FC<ResultCardProps> = ({
     const num = typeof val === 'number' ? val : Number(val);
     if (isNaN(num)) return String(val);
 
+    const locale = language === 'id' ? 'id-ID' : 'en-US';
+    const decimalSep = language === 'id' ? ',' : '.';
+
     const parts = String(num).split('.');
-    const integerPart = Number(parts[0]).toLocaleString('id-ID');
+    const integerPart = Number(parts[0]).toLocaleString(locale);
     if (parts.length > 1) {
       const decimalPart = parts[1].slice(0, 6);
-      return `${integerPart},${decimalPart}`;
+      return `${integerPart}${decimalSep}${decimalPart}`;
     }
     return integerPart;
   };
+
+  const resultLabelText = t?.resultLabel ?? (language === 'id' ? 'Hasil' : 'Result');
+  const copyBtnText = t?.copyBtn ?? (language === 'id' ? 'Salin' : 'Copy');
+  const copiedBtnText = t?.copiedBtn ?? (language === 'id' ? 'Tersalin' : 'Copied');
+  const copyTooltipText = t?.copyTooltip ?? (language === 'id' ? 'Salin Hasil Asli Presisi Lengkap' : 'Copy High-Precision Exact Result');
 
   return (
     <div
@@ -133,30 +148,30 @@ export const ResultCard: React.FC<ResultCardProps> = ({
       {/* Left: Formatted Result Value in Sans-Serif */}
       <div className="flex-1 min-w-0 text-left">
         <span className="text-[10px] font-extrabold uppercase tracking-widest text-indigo-600 dark:text-indigo-400 block mb-0.5">
-          Hasil
+          {resultLabelText}
         </span>
         <div className="text-2xl sm:text-3xl font-sans font-extrabold text-slate-900 dark:text-white truncate">
           {formatDisplayResult(result)}
         </div>
       </div>
 
-      {/* Far Right: Salin (Copy) Button */}
+      {/* Far Right: Copy Button */}
       {result !== null && !isError && (
         <button
           type="button"
           onClick={handleCopyResult}
           className="flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white text-xs font-extrabold shrink-0 transition-all btn-press-effect shadow-sm"
-          title="Salin Hasil Asli Presisi Lengkap"
+          title={copyTooltipText}
         >
           {copied ? (
             <>
               <Check strokeWidth={2.5} className="w-4 h-4 text-emerald-300" />
-              <span>Tersalin</span>
+              <span>{copiedBtnText}</span>
             </>
           ) : (
             <>
               <Copy strokeWidth={2.5} className="w-4 h-4" />
-              <span>Salin</span>
+              <span>{copyBtnText}</span>
             </>
           )}
         </button>

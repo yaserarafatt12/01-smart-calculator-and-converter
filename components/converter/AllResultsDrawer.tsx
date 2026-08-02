@@ -3,6 +3,7 @@
 import React, { useState } from 'react';
 import { X, Copy, Check, Layers } from 'lucide-react';
 import { UnitCategory, convertAllUnitsInCategory } from '@/lib/converter/unit-conversion';
+import { Language, Translations } from '@/lib/i18n/translations';
 
 interface AllResultsDrawerProps {
   isOpen: boolean;
@@ -10,6 +11,8 @@ interface AllResultsDrawerProps {
   category: UnitCategory;
   fromValue: string;
   fromUnit: string;
+  language?: Language;
+  t?: Translations;
 }
 
 export const AllResultsDrawer: React.FC<AllResultsDrawerProps> = ({
@@ -18,6 +21,8 @@ export const AllResultsDrawer: React.FC<AllResultsDrawerProps> = ({
   category,
   fromValue,
   fromUnit,
+  language = 'en',
+  t,
 }) => {
   const [copiedId, setCopiedId] = useState<string | null>(null);
 
@@ -31,6 +36,11 @@ export const AllResultsDrawer: React.FC<AllResultsDrawerProps> = ({
     setCopiedId(unitId);
     setTimeout(() => setCopiedId(null), 1500);
   };
+
+  const drawerTitle = language === 'id' ? 'Seluruh Hasil Konversi' : 'All Conversion Results';
+  const drawerSubtitle = language === 'id'
+    ? `${fromValue} ${fromUnit} dalam seluruh satuan`
+    : `${fromValue} ${fromUnit} in all available units`;
 
   return (
     <div className="fixed inset-0 z-[1000] flex items-center justify-center p-4">
@@ -49,9 +59,9 @@ export const AllResultsDrawer: React.FC<AllResultsDrawerProps> = ({
               <Layers strokeWidth={2.5} className="w-4 h-4" />
             </div>
             <div>
-              <h3 className="text-sm font-extrabold tracking-tight">Seluruh Hasil Konversi</h3>
+              <h3 className="text-sm font-extrabold tracking-tight">{drawerTitle}</h3>
               <p className="text-[11px] text-slate-500 font-medium">
-                {fromValue} {fromUnit} dalam seluruh satuan
+                {drawerSubtitle}
               </p>
             </div>
           </div>
@@ -84,17 +94,17 @@ export const AllResultsDrawer: React.FC<AllResultsDrawerProps> = ({
                 type="button"
                 onClick={() => handleCopy(item.unitId, String(item.value))}
                 className="px-2.5 py-1.5 rounded-xl bg-slate-200 dark:bg-slate-700 hover:bg-indigo-600 hover:text-white text-xs font-bold transition-all shrink-0 flex items-center gap-1 btn-press-effect"
-                title="Salin Angka"
+                title={t?.copyBtn || 'Copy'}
               >
                 {copiedId === item.unitId ? (
                   <>
                     <Check strokeWidth={2.5} className="w-3.5 h-3.5 text-emerald-400" />
-                    <span>Tersalin</span>
+                    <span>{t?.copiedBtn || 'Copied'}</span>
                   </>
                 ) : (
                   <>
                     <Copy strokeWidth={2.5} className="w-3.5 h-3.5" />
-                    <span>Salin</span>
+                    <span>{t?.copyBtn || 'Copy'}</span>
                   </>
                 )}
               </button>

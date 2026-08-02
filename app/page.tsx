@@ -113,7 +113,7 @@ export default function Home() {
   // Evaluate calculation
   const handleCalculate = useCallback(() => {
     if (!expression.trim()) {
-      const err = getFormattedError({ success: false, error: 'EMPTY_INPUT', index: 0 });
+      const err = getFormattedError({ success: false, error: 'EMPTY_INPUT', index: 0 }, language);
       setFormattedError(err);
       setResult(null);
       setCalcResultObj(null);
@@ -126,7 +126,7 @@ export default function Home() {
     if (evaluated.error) {
       setResult('Error');
       setCalcResultObj(null);
-      const err = getFormattedError({ success: false, error: 'SYNTAX_ERROR', message: evaluated.error, index: 0 });
+      const err = getFormattedError({ success: false, error: 'SYNTAX_ERROR', message: evaluated.error, index: 0 }, language);
       setFormattedError(err);
     } else {
       setResult(evaluated.formattedValue);
@@ -304,6 +304,8 @@ export default function Home() {
                 result={result}
                 errorIndex={formattedError?.index}
                 isError={Boolean(formattedError)}
+                language={language}
+                t={t}
               />
             </div>
 
@@ -357,6 +359,8 @@ export default function Home() {
                 onClickDetail={() => {
                   if (calcResultObj) setShowResultDetailModal(true);
                 }}
+                language={language}
+                t={t}
               />
 
               {/* Dynamic Keypad View: Complete Mode (Standard Scientific Hierarchy) vs Default Mode */}
@@ -396,7 +400,7 @@ export default function Home() {
                 : 'opacity-0 scale-95 translate-x-4 pointer-events-none absolute inset-0 z-0 h-0 overflow-hidden'
             }`}
           >
-            <CompleteConverterView />
+            <CompleteConverterView language={language} t={t} />
           </div>
         </div>
 
@@ -456,6 +460,7 @@ export default function Home() {
           onClose={() => setShowResultDetailModal(false)}
           result={calcResultObj}
           onUseAsInput={(val) => setExpression((prev) => prev + val)}
+          language={language}
         />
       </div>
 

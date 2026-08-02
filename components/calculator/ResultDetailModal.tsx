@@ -3,12 +3,14 @@
 import React, { useState } from 'react';
 import { X, Copy, Check, ArrowUpRight, Sparkles } from 'lucide-react';
 import { CalculationResult } from '@/lib/calculator/types';
+import { Language, TRANSLATIONS } from '@/lib/i18n/translations';
 
 interface ResultDetailModalProps {
   isOpen: boolean;
   onClose: () => void;
   result: CalculationResult | null;
   onUseAsInput: (val: string) => void;
+  language?: Language;
 }
 
 export const ResultDetailModal: React.FC<ResultDetailModalProps> = ({
@@ -16,8 +18,10 @@ export const ResultDetailModal: React.FC<ResultDetailModalProps> = ({
   onClose,
   result,
   onUseAsInput,
+  language = 'en',
 }) => {
   const [copied, setCopied] = useState(false);
+  const t = TRANSLATIONS[language];
 
   if (!isOpen || !result) return null;
 
@@ -43,7 +47,7 @@ export const ResultDetailModal: React.FC<ResultDetailModalProps> = ({
             <div className="p-2 rounded-xl bg-indigo-600 text-white font-bold">
               <Sparkles strokeWidth={2.5} className="w-4 h-4" />
             </div>
-            <h3 className="text-sm font-extrabold tracking-tight">Rincian Hasil Perhitungan</h3>
+            <h3 className="text-sm font-extrabold tracking-tight">{t.resultDetailTitle}</h3>
           </div>
           <button
             type="button"
@@ -59,7 +63,7 @@ export const ResultDetailModal: React.FC<ResultDetailModalProps> = ({
           {/* Nilai Lengkap */}
           <div className="p-3.5 rounded-2xl bg-slate-100 dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700/80 space-y-1">
             <span className="text-[10px] font-extrabold uppercase tracking-widest text-indigo-600 dark:text-indigo-400">
-              Nilai Lengkap (Presisi Tinggi)
+              {t.fullPrecisionValue}
             </span>
             <div className="text-base font-extrabold font-sans break-all select-all text-slate-900 dark:text-slate-100">
               {result.rawValue}
@@ -70,7 +74,7 @@ export const ResultDetailModal: React.FC<ResultDetailModalProps> = ({
           {result.scientificNotation && (
             <div className="p-3.5 rounded-2xl bg-slate-100 dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700/80 space-y-1">
               <span className="text-[10px] font-extrabold uppercase tracking-widest text-indigo-600 dark:text-indigo-400">
-                Notasi Eksponensial / Ilmiah
+                {t.scientificNotationLabel}
               </span>
               <div className="text-sm font-extrabold font-sans text-slate-900 dark:text-slate-100">
                 {result.scientificNotation}
@@ -80,9 +84,9 @@ export const ResultDetailModal: React.FC<ResultDetailModalProps> = ({
 
           {/* Detail Info */}
           <div className="flex items-center justify-between text-xs text-slate-500 font-semibold px-1">
-            <span>Status Nilai:</span>
+            <span>{t.valueStatusLabel}</span>
             <span className="font-bold text-indigo-600 dark:text-indigo-400">
-              {result.isApproximate ? 'Nilai Pendekatan (≈)' : 'Nilai Eksak (=)'}
+              {result.isApproximate ? t.approximateValue : t.exactValue}
             </span>
           </div>
         </div>
@@ -95,7 +99,7 @@ export const ResultDetailModal: React.FC<ResultDetailModalProps> = ({
             className="flex-1 flex items-center justify-center gap-1.5 py-2.5 px-3 rounded-xl bg-slate-200 dark:bg-slate-800 hover:bg-slate-300 dark:hover:bg-slate-700 text-xs font-extrabold transition-all btn-press-effect"
           >
             {copied ? <Check strokeWidth={2.5} className="w-4 h-4 text-emerald-500" /> : <Copy strokeWidth={2.5} className="w-4 h-4 text-indigo-600 dark:text-indigo-400" />}
-            <span>{copied ? 'Tersalin' : 'Salin Nilai'}</span>
+            <span>{copied ? t.copiedBtn : t.copyValueBtn}</span>
           </button>
 
           <button
@@ -107,7 +111,7 @@ export const ResultDetailModal: React.FC<ResultDetailModalProps> = ({
             className="flex-1 flex items-center justify-center gap-1.5 py-2.5 px-3 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white text-xs font-extrabold transition-all btn-press-effect shadow-md"
           >
             <ArrowUpRight strokeWidth={2.5} className="w-4 h-4" />
-            <span>Gunakan Masukan</span>
+            <span>{t.useAsInputBtn}</span>
           </button>
         </div>
       </div>

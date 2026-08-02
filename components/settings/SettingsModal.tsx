@@ -208,7 +208,7 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({
                 {t.settingsTitle}
               </h2>
               <p className="text-[11px] text-slate-700 dark:text-slate-400 font-semibold">
-                {language === 'id' ? 'Kelola sesi, tampilan, dan panduan fitur' : 'Manage session, theme, and user guide'}
+                {t.manageSessionSub}
               </p>
             </div>
           </div>
@@ -230,12 +230,12 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({
             </div>
             <div>
               <div className="text-xs sm:text-sm font-black tracking-tight">
-                {language === 'id' ? 'Pasang Aplikasi di HP (iOS & Android)' : 'Install App on Phone'}
+                {t.pwaInstallTitle}
               </div>
               <div className="text-[11px] text-indigo-100 font-medium mt-0.5">
                 {isStandalone
-                  ? (language === 'id' ? 'Aplikasi sudah terpasang di HP Anda' : 'App is installed on your device')
-                  : (language === 'id' ? 'Jadikan aplikasi mandiri tanpa peramban (Offline)' : 'Add to home screen & work 100% offline')}
+                  ? t.pwaInstalledText
+                  : t.pwaInstallDesc}
               </div>
             </div>
           </div>
@@ -247,7 +247,7 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({
               className="px-3.5 py-2 rounded-xl text-xs font-black bg-white text-indigo-600 hover:bg-indigo-50 transition-all btn-press-effect shrink-0 flex items-center gap-1.5 shadow-md"
             >
               <Download className="w-4 h-4" />
-              <span>{language === 'id' ? 'Pasang' : 'Install'}</span>
+              <span>{t.installBtn}</span>
             </button>
           )}
         </div>
@@ -258,7 +258,7 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({
             <div className="flex items-center justify-between font-extrabold text-slate-900 dark:text-white">
               <span className="flex items-center gap-1.5">
                 <Share2 className="w-4 h-4 text-indigo-600 dark:text-indigo-400" />
-                {language === 'id' ? 'Panduan Pasang di iPhone (Safari):' : 'iPhone Installation Guide:'}
+                {t.iosGuideTitle}
               </span>
               <button
                 type="button"
@@ -270,19 +270,13 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({
             </div>
             <ol className="list-decimal pl-5 space-y-2 font-medium text-[11px]">
               <li>
-                {language === 'id'
-                  ? 'Ketuk tombol Bagikan / Share (ikon kotak tanda panah ke atas) di peramban Safari Anda.'
-                  : 'Tap the Share button (square icon with arrow pointing up) in Safari.'}
+                {t.iosStep1}
               </li>
               <li>
-                {language === 'id'
-                  ? 'Geser opsi menu ke bawah, lalu ketuk "Tambah ke Layar Utama" ("Add to Home Screen") atau "Tambah Pintasan".'
-                  : 'Scroll down and tap "Add to Home Screen" or "Add Shortcut".'}
+                {t.iosStep2}
               </li>
               <li>
-                {language === 'id'
-                  ? 'Ketuk "Tambah" di pojok kanan atas. Ikon Smart Calc akan langsung muncul di HP Anda!'
-                  : 'Tap "Add" at the top right. The app icon will appear on your home screen!'}
+                {t.iosStep3}
               </li>
             </ol>
           </div>
@@ -307,7 +301,7 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({
         {/* SECTION 3: Appearance & Language Controls */}
         <div className="space-y-3">
           <h3 className="text-xs font-extrabold uppercase tracking-widest text-indigo-700 dark:text-indigo-400">
-            {language === 'id' ? 'Pengaturan Aplikasi' : 'Application Settings'}
+            {t.appSettingsGroup}
           </h3>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
@@ -368,7 +362,7 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({
               >
                 <span className="flex items-center gap-2">
                   <Info className="w-4 h-4 text-indigo-700 dark:text-indigo-400" />
-                  {language === 'id' ? '1. Kegunaan & Manfaat Utama Aplikasi Kita' : '1. Core Purpose & Key Benefits of Our App'}
+                  {t.guidePurposeTitle}
                 </span>
                 {openGuideSection === 'purpose' ? <ChevronDown className="w-4 h-4" /> : <ChevronRight className="w-4 h-4" />}
               </button>
@@ -413,7 +407,7 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({
               >
                 <span className="flex items-center gap-2">
                   <Calculator className="w-4 h-4 text-indigo-700 dark:text-indigo-400" />
-                  {language === 'id' ? '2. Perbedaan Mode Default & Lengkap' : '2. Default vs Complete Mode'}
+                  {t.guideModesTitle}
                 </span>
                 {openGuideSection === 'modes' ? <ChevronDown className="w-4 h-4" /> : <ChevronRight className="w-4 h-4" />}
               </button>
@@ -445,7 +439,7 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({
               >
                 <span className="flex items-center gap-2">
                   <Zap className="w-4 h-4 text-violet-700 dark:text-violet-400" />
-                  {language === 'id' ? '3. Cara Kerja Tombol 2nd & Invers' : '3. How 2nd Button & Inverse Functions Work'}
+                  {t.guideSecondTitle}
                 </span>
                 {openGuideSection === 'second' ? <ChevronDown className="w-4 h-4" /> : <ChevronRight className="w-4 h-4" />}
               </button>
@@ -477,7 +471,7 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({
               >
                 <span className="flex items-center gap-2">
                   <History className="w-4 h-4 text-indigo-700 dark:text-indigo-400" />
-                  {language === 'id' ? '4. Menggunakan Riwayat Perhitungan' : '4. Using Calculation History'}
+                  {t.guideHistoryTitle}
                 </span>
                 {openGuideSection === 'history' ? <ChevronDown className="w-4 h-4" /> : <ChevronRight className="w-4 h-4" />}
               </button>
@@ -509,7 +503,7 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({
               >
                 <span className="flex items-center gap-2">
                   <Layers className="w-4 h-4 text-indigo-700 dark:text-indigo-400" />
-                  {language === 'id' ? '5. Rincian & Kegunaan 14+ Kategori Satuan' : '5. Detailed 14+ Unit Categories Breakdown'}
+                  {t.guideConverterTitle}
                 </span>
                 {openGuideSection === 'converter' ? <ChevronDown className="w-4 h-4" /> : <ChevronRight className="w-4 h-4" />}
               </button>

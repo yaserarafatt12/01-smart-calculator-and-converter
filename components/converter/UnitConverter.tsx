@@ -28,6 +28,7 @@ import {
   convertUnit,
   UnitInfo,
 } from '@/lib/converter/unit-conversion';
+import { Language, Translations } from '@/lib/i18n/translations';
 
 interface CategoryItem {
   id: UnitCategory;
@@ -36,24 +37,12 @@ interface CategoryItem {
   icon: React.ReactNode;
 }
 
-const ALL_CATEGORIES: CategoryItem[] = [
-  { id: 'length', label: 'Panjang', desc: 'm, km, cm, in, ft...', icon: <Ruler strokeWidth={2.5} className="w-4 h-4 text-indigo-600 dark:text-indigo-300" /> },
-  { id: 'weight', label: 'Berat & Massa', desc: 'kg, g, mg, lb...', icon: <Scale strokeWidth={2.5} className="w-4 h-4 text-violet-600 dark:text-violet-300" /> },
-  { id: 'temperature', label: 'Suhu', desc: '°C, °F, K, °R', icon: <Thermometer strokeWidth={2.5} className="w-4 h-4 text-rose-600 dark:text-rose-300" /> },
-  { id: 'area', label: 'Luas', desc: 'm², km², ha, acre...', icon: <Square strokeWidth={2.5} className="w-4 h-4 text-amber-600 dark:text-amber-300" /> },
-  { id: 'volume', label: 'Volume', desc: 'mL, L, m³, galon...', icon: <Box strokeWidth={2.5} className="w-4 h-4 text-cyan-600 dark:text-cyan-300" /> },
-  { id: 'time', label: 'Waktu', desc: 'ms, s, min, jam, thn...', icon: <Clock strokeWidth={2.5} className="w-4 h-4 text-emerald-600 dark:text-emerald-300" /> },
-  { id: 'speed', label: 'Kecepatan', desc: 'm/s, km/h, mph, knot...', icon: <Zap strokeWidth={2.5} className="w-4 h-4 text-yellow-600 dark:text-yellow-300" /> },
-  { id: 'digital', label: 'Data Digital', desc: 'bit, B, KB, MB, GB, KiB...', icon: <Cpu strokeWidth={2.5} className="w-4 h-4 text-blue-600 dark:text-blue-300" /> },
-  { id: 'energy', label: 'Energi', desc: 'J, kJ, cal, Wh, kWh...', icon: <Flame strokeWidth={2.5} className="w-4 h-4 text-orange-600 dark:text-orange-300" /> },
-  { id: 'power', label: 'Daya', desc: 'W, kW, HP...', icon: <Activity strokeWidth={2.5} className="w-4 h-4 text-red-600 dark:text-red-300" /> },
-  { id: 'pressure', label: 'Tekanan', desc: 'Pa, bar, atm, psi...', icon: <Gauge strokeWidth={2.5} className="w-4 h-4 text-teal-600 dark:text-teal-300" /> },
-  { id: 'angle', label: 'Sudut', desc: 'derajat, rad, grad...', icon: <Compass strokeWidth={2.5} className="w-4 h-4 text-purple-600 dark:text-purple-300" /> },
-  { id: 'frequency', label: 'Frekuensi', desc: 'Hz, kHz, MHz, GHz...', icon: <Radio strokeWidth={2.5} className="w-4 h-4 text-pink-600 dark:text-pink-300" /> },
-  { id: 'fuel', label: 'Bahan Bakar', desc: 'km/L, L/100km, mpg...', icon: <Droplet strokeWidth={2.5} className="w-4 h-4 text-sky-600 dark:text-sky-300" /> },
-];
+interface UnitConverterProps {
+  language?: Language;
+  t?: Translations;
+}
 
-export const UnitConverter: React.FC = () => {
+export const UnitConverter: React.FC<UnitConverterProps> = ({ language = 'en', t }) => {
   const [category, setCategory] = useState<UnitCategory>('length');
   const [fromValue, setFromValue] = useState<string>('1');
   const [fromUnit, setFromUnit] = useState<string>('km');
@@ -69,6 +58,23 @@ export const UnitConverter: React.FC = () => {
 
   const fromRef = useRef<HTMLDivElement>(null);
   const toRef = useRef<HTMLDivElement>(null);
+
+  const ALL_CATEGORIES: CategoryItem[] = [
+    { id: 'length', label: t?.catLength || 'Length & Distance', desc: 'm, km, cm, in, ft...', icon: <Ruler strokeWidth={2.5} className="w-4 h-4 text-indigo-600 dark:text-indigo-300" /> },
+    { id: 'weight', label: t?.catWeight || 'Weight & Mass', desc: 'kg, g, mg, lb...', icon: <Scale strokeWidth={2.5} className="w-4 h-4 text-violet-600 dark:text-violet-300" /> },
+    { id: 'temperature', label: t?.catTemp || 'Temperature', desc: '°C, °F, K, °R', icon: <Thermometer strokeWidth={2.5} className="w-4 h-4 text-rose-600 dark:text-rose-300" /> },
+    { id: 'area', label: t?.catArea || 'Area & Surface', desc: 'm², km², ha, acre...', icon: <Square strokeWidth={2.5} className="w-4 h-4 text-amber-600 dark:text-amber-300" /> },
+    { id: 'volume', label: t?.catVolume || 'Volume & Capacity', desc: 'mL, L, m³, gal...', icon: <Box strokeWidth={2.5} className="w-4 h-4 text-cyan-600 dark:text-cyan-300" /> },
+    { id: 'time', label: t?.catTime || 'Time & Duration', desc: 'ms, s, min, hr...', icon: <Clock strokeWidth={2.5} className="w-4 h-4 text-emerald-600 dark:text-emerald-300" /> },
+    { id: 'speed', label: t?.catSpeed || 'Speed & Velocity', desc: 'm/s, km/h, mph, knot...', icon: <Zap strokeWidth={2.5} className="w-4 h-4 text-yellow-600 dark:text-yellow-300" /> },
+    { id: 'digital', label: t?.catDigital || 'Digital Data', desc: 'bit, B, KB, MB, GB, KiB...', icon: <Cpu strokeWidth={2.5} className="w-4 h-4 text-blue-600 dark:text-blue-300" /> },
+    { id: 'energy', label: t?.catEnergy || 'Energy & Calories', desc: 'J, kJ, cal, Wh, kWh...', icon: <Flame strokeWidth={2.5} className="w-4 h-4 text-orange-600 dark:text-orange-300" /> },
+    { id: 'power', label: t?.catPower || 'Power & Wattage', desc: 'W, kW, HP...', icon: <Activity strokeWidth={2.5} className="w-4 h-4 text-red-600 dark:text-red-300" /> },
+    { id: 'pressure', label: t?.catPressure || 'Pressure', desc: 'Pa, bar, atm, psi...', icon: <Gauge strokeWidth={2.5} className="w-4 h-4 text-teal-600 dark:text-teal-300" /> },
+    { id: 'angle', label: t?.catAngle || 'Angle & Geometry', desc: '°, rad, grad...', icon: <Compass strokeWidth={2.5} className="w-4 h-4 text-purple-600 dark:text-purple-300" /> },
+    { id: 'frequency', label: t?.catFrequency || 'Frequency', desc: 'Hz, kHz, MHz, GHz...', icon: <Radio strokeWidth={2.5} className="w-4 h-4 text-pink-600 dark:text-pink-300" /> },
+    { id: 'fuel', label: t?.catFuel || 'Fuel Economy', desc: 'km/L, L/100km, mpg...', icon: <Droplet strokeWidth={2.5} className="w-4 h-4 text-sky-600 dark:text-sky-300" /> },
+  ];
 
   const visibleCategories = showAllCategories
     ? ALL_CATEGORIES
@@ -94,7 +100,7 @@ export const UnitConverter: React.FC = () => {
     const num = parseFloat(fromValue);
     if (isNaN(num)) {
       setResult(null);
-      setErrorMsg('Masukkan angka yang valid');
+      setErrorMsg(t?.validNumberError || 'Please enter a valid number');
       return;
     }
 
@@ -104,7 +110,7 @@ export const UnitConverter: React.FC = () => {
       setErrorMsg(null);
     } catch (err: any) {
       setResult(null);
-      setErrorMsg(err.message || 'Gagal mengonversi unit');
+      setErrorMsg(err.message || 'Conversion failed');
     }
   }, [category, fromValue, fromUnit, toUnit]);
 
@@ -217,7 +223,7 @@ export const UnitConverter: React.FC = () => {
             onClick={() => setShowAllCategories((prev) => !prev)}
             className="flex items-center justify-center gap-2 text-xs font-extrabold text-indigo-600 dark:text-indigo-400 hover:bg-indigo-500/20 px-5 py-2 bg-indigo-500/15 dark:bg-indigo-500/20 rounded-full border border-indigo-500/30 transition-all btn-press-effect w-full max-w-[260px] shadow-sm whitespace-nowrap"
           >
-            <span>{showAllCategories ? 'Sembunyikan Kategori' : 'Lihat 14 Kategori Lainnya'}</span>
+            <span>{showAllCategories ? (t?.hideCategories || 'Hide Categories') : (t?.showMoreCategories || 'View 14 Other Categories')}</span>
             {showAllCategories ? <ChevronUp strokeWidth={2.5} className="w-4 h-4 shrink-0" /> : <ChevronDown strokeWidth={2.5} className="w-4 h-4 shrink-0" />}
           </button>
         </div>
@@ -226,12 +232,12 @@ export const UnitConverter: React.FC = () => {
       {/* Prominent Visual Separator Line */}
       <div className="w-full my-6 sm:my-8 border-t border-slate-200/60 dark:border-slate-800/60" />
 
-      {/* Main Input/Output Conversion Block Pushed Down Gracefully */}
+      {/* Main Input/Output Conversion Block */}
       <div className="space-y-4 pt-4 sm:pt-6">
         {/* From Value & Custom Dropdown */}
         <div className="space-y-1 relative z-30" ref={fromRef}>
           <label className="block text-xs font-extrabold text-slate-800 dark:text-slate-200 tracking-tight">
-            Dari Nilai & Satuan
+            {t?.fromValueLabel || 'From Value & Unit'}
           </label>
           <div className="relative flex rounded-2xl bg-slate-200/90 dark:bg-slate-800/90 border border-slate-300 dark:border-slate-700/80 focus-within:border-indigo-600 transition-all shadow-sm">
             <input
@@ -290,19 +296,19 @@ export const UnitConverter: React.FC = () => {
             data-testid="btn-swap-units"
             onClick={handleSwap}
             className="w-10 h-10 rounded-full bg-slate-200 dark:bg-slate-800 text-indigo-600 dark:text-indigo-400 flex items-center justify-center shadow-lg hover:scale-110 active:scale-95 transition-all duration-200 border-2 border-indigo-500/40"
-            title="Tukar Satuan"
+            title={t?.swapTooltip || 'Swap Units'}
           >
             <ArrowLeftRight strokeWidth={2.5} className="w-4 h-4" />
           </button>
         </div>
 
-        {/* To Value & Custom Dropdown in Matte Slate WITH INLINE COPY BUTTON */}
+        {/* To Value & Custom Dropdown */}
         <div className="space-y-1 relative z-10" ref={toRef}>
           <label className="block text-xs font-extrabold text-slate-800 dark:text-slate-200 tracking-tight">
-            Ke Hasil & Satuan
+            {t?.toValueLabel || 'To Result & Unit'}
           </label>
           <div className="relative flex items-center justify-between rounded-2xl bg-slate-200/90 dark:bg-slate-800/90 border border-slate-300 dark:border-slate-700/80 p-2 transition-all shadow-sm">
-            {/* Left: Converted Result Value in Sans-Serif */}
+            {/* Left: Converted Result Value */}
             <div
               id="to-value-output"
               data-testid="to-value-output"
@@ -320,10 +326,10 @@ export const UnitConverter: React.FC = () => {
                   data-testid="btn-copy-converter-result"
                   onClick={handleCopy}
                   className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white text-xs font-bold transition-all btn-press-effect shadow-sm"
-                  title="Salin Hasil"
+                  title={t?.copyBtn || 'Copy'}
                 >
                   {copied ? <Check strokeWidth={2.5} className="w-3.5 h-3.5 text-emerald-300" /> : <Copy strokeWidth={2.5} className="w-3.5 h-3.5" />}
-                  <span>{copied ? 'Tersalin' : 'Salin'}</span>
+                  <span>{copied ? (t?.copiedBtn || 'Copied') : (t?.copyBtn || 'Copy')}</span>
                 </button>
               )}
 
@@ -367,14 +373,14 @@ export const UnitConverter: React.FC = () => {
         </div>
       </div>
 
-      {/* Patokan Satuan */}
+      {/* Unit Benchmark */}
       {errorMsg ? (
         <div className="p-3 rounded-2xl bg-rose-500/10 dark:bg-rose-950/40 border border-rose-500/20 text-xs text-rose-600 dark:text-rose-400 font-bold">
           {errorMsg}
         </div>
       ) : (
         <div className="text-xs font-medium text-slate-600 dark:text-slate-400 text-center pt-3">
-          Patokan Satuan: <strong className="font-sans font-extrabold text-indigo-600 dark:text-indigo-400">{getFormulaHint()}</strong>
+          {t?.benchmarkLabel || 'Unit Benchmark:'} <strong className="font-sans font-extrabold text-indigo-600 dark:text-indigo-400">{getFormulaHint()}</strong>
         </div>
       )}
     </div>
